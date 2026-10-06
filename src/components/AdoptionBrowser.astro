@@ -1,6 +1,8 @@
 ---
 import { adoptablePets } from "../data/community-content";
 import AdoptionProfiles from "./interactive/AdoptionProfiles";
+import catShowcase from "../assets/clear/adoption-cats-showcase.webp";
+import dogShowcase from "../assets/clear/adoption-dogs-showcase.webp";
 const pets = adoptablePets.filter(pet => pet.status !== 'Adopted');
 ---
 
@@ -10,5 +12,5 @@ const pets = adoptablePets.filter(pet => pet.status !== 'Adopted');
     <h2 id="adoption-browser-title">Find your next companion</h2>
     <p>Explore a match for your home and ask our team about current availability.</p>
   </div>
-  <AdoptionProfiles pets={pets} client:load />
+  <AdoptionProfiles pets={pets} showcaseImages={{ cat: catShowcase.src, dog: dogShowcase.src }} client:load />
 </section>
