@@ -6,10 +6,11 @@ import { ScrollArea } from "../ui/scroll-area";
 import { services } from "../../data/site-content";
 import { serviceDetails } from "../../data/service-details";
 import BookingForm from "./BookingForm";
+import AdoptionInquiryForm from "./AdoptionInquiryForm";
 import ActionLink from "./ActionLink";
 import type { BookingPreset } from "./booking-model";
 
-type Selection = { kind: "booking"; preset: BookingPreset } | { kind: "service"; key: string } | { kind: "gallery"; src: string; alt: string };
+type Selection = { kind: "booking"; preset: BookingPreset } | { kind: "adoption"; pet?: string; context?: string } | { kind: "service"; key: string } | { kind: "gallery"; src: string; alt: string };
 
 export default function InteractionDialogs() {
   const [selection, setSelection] = useState<Selection>({ kind: "booking", preset: {} });
@@ -21,10 +22,11 @@ export default function InteractionDialogs() {
       setSelection(next); setOpen(true);
     };
     const click = (event: MouseEvent) => {
-      const button = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-booking], [data-service-details], [data-gallery-src]") : null;
+      const button = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-booking], [data-adoption-inquiry], [data-service-details], [data-gallery-src]") : null;
       if (!button) return;
       event.preventDefault();
-      if (button.hasAttribute("data-booking")) show({ kind: "booking", preset: { service: button.dataset.bookingService, pet: button.dataset.bookingPet, plan: button.dataset.bookingPlan, context: button.dataset.bookingContext } });
+      if (button.hasAttribute("data-adoption-inquiry")) show({ kind: "adoption", pet: button.dataset.adoptionPet, context: button.dataset.adoptionContext });
+      else if (button.hasAttribute("data-booking")) show({ kind: "booking", preset: { service: button.dataset.bookingService, pet: button.dataset.bookingPet, plan: button.dataset.bookingPlan, context: button.dataset.bookingContext } });
       else if (button.dataset.serviceDetails) show({ kind: "service", key: button.dataset.serviceDetails });
       else if (button.dataset.gallerySrc) show({ kind: "gallery", src: button.dataset.gallerySrc, alt: button.dataset.galleryAlt || "Clinic photo" });
     };
@@ -38,18 +40,19 @@ export default function InteractionDialogs() {
     return () => { document.body.classList.remove("dialog-open"); };
   }, [open]);
   const service = selection.kind === "service" ? services.find(item => item.image === selection.key) : undefined;
-  const title = selection.kind === "booking" ? "Request an appointment" : selection.kind === "gallery" ? "Around the clinic" : service?.title || "Explore our services";
-  const description = selection.kind === "booking" ? "Choose your preferences. Our team will confirm availability, duration, and pricing." : selection.kind === "gallery" ? selection.alt : service?.text || "Discover care for your companion.";
+  const title = selection.kind === "booking" ? "Request an appointment" : selection.kind === "adoption" ? "Ask about adoption" : selection.kind === "gallery" ? "Around the clinic" : service?.title || "Explore our services";
+  const description = selection.kind === "booking" ? "Choose your preferences. Our team will confirm availability, duration, and pricing." : selection.kind === "adoption" ? "Tell us what kind of companion you’re interested in. This enquiry does not book an appointment." : selection.kind === "gallery" ? selection.alt : service?.text || "Discover care for your companion.";
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogContent className="paw-dialog shadcn-dialog" showCloseButton={false} onCloseAutoFocus={event => { event.preventDefault(); opener.current?.focus({ preventScroll: true }); }}>
       <ScrollArea className="dialog-scroll" type="always">
         <div className="dialog-panel">
           <header className="dialog-heading">
-            <div><p className="eyebrow">{selection.kind === "booking" ? "Let’s plan your visit" : "Care that fits your companion"}</p><DialogTitle>{title}</DialogTitle></div>
+            <div><p className="eyebrow">{selection.kind === "booking" ? "Let’s plan your visit" : selection.kind === "adoption" ? "Adoption enquiry" : "Care that fits your companion"}</p><DialogTitle>{title}</DialogTitle></div>
             <DialogClose asChild><Button type="button" variant="ghost" size="icon" className="dialog-close" aria-label="Close dialog"><X /></Button></DialogClose>
           </header>
           <DialogDescription className="dialog-intro">{description}</DialogDescription>
           {selection.kind === "booking" && <BookingForm preset={selection.preset} />}
+          {open && selection.kind === "adoption" && <AdoptionInquiryForm key={`${selection.pet || "any"}-${selection.context || "adoption"}`} pet={selection.pet} context={selection.context} />}
           {selection.kind === "service" && service && <>
             <h3>What to discuss with the team</h3>
             <ul className="detail-list">{serviceDetails[service.image].includes.map(text => <li key={text}>{text}</li>)}</ul>

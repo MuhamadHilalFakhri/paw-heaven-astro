@@ -28,12 +28,12 @@ export default function AdoptionProfiles({ pets, showcaseImages }: { pets: PetPr
       <img {...pet.photo} loading="lazy" decoding="async" />
       <div><Badge className="pet-status">{pet.status}</Badge><h3>{pet.name}</h3><dl><dt>Age</dt><dd>{pet.age}</dd><dt>Character</dt><dd>{pet.character}</dd></dl>
         <Accordion type="single" collapsible><AccordionItem value="profile"><AccordionTrigger>Get to know {pet.name}</AccordionTrigger><AccordionContent><p>{pet.description}</p></AccordionContent></AccordionItem></Accordion>
-        <ActionLink href="#contact" data-booking data-booking-service="adoption" data-booking-pet={pet.species} data-booking-context={`Adoption enquiry: ${pet.name}`}>Ask about {pet.name}</ActionLink>
+        <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.name}>Ask about {pet.name}</ActionLink>
       </div>
     </Card>)}</div> : <div className="pet-grid companion-showcase">{filteredShowcase.map(pet => <Card key={pet.species} className="companion-showcase-card" data-species={pet.species}>
       <div className="companion-showcase-art"><img src={showcaseImages[pet.species.toLowerCase() as "cat" | "dog"]} alt={pet.alt} loading="lazy" decoding="async" /></div>
       <div className="companion-showcase-copy"><span className="companion-kind">{pet.species} companions</span><h3>{pet.title}</h3><p>{pet.description}</p>
-        <ActionLink href="#contact" data-booking data-booking-service="adoption" data-booking-pet={pet.species} data-booking-context={`Adoption enquiry: ${pet.species.toLowerCase()}s`}>Ask about {pet.species.toLowerCase()}s</ActionLink>
+        <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.title}>Ask about {pet.species.toLowerCase()}s</ActionLink>
       </div>
     </Card>)}</div>}
   </>;
