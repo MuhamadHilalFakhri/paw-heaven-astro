@@ -1,5 +1,6 @@
 .vaccine-section {
-  padding: 30px 4% 0;
+  padding: 30px 4%;
+  background: linear-gradient(to bottom, var(--vaccine-tint), var(--plans-tint));
 }
 
 .vaccine-card {
@@ -32,7 +33,7 @@
 
 .plans-section {
   padding: 56px 4% 48px;
-  background: var(--plans-tint);
+  background: linear-gradient(to bottom, var(--plans-tint), var(--community-tint));
 }
 
 .plans-section h2 {

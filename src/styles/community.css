@@ -1,9 +1,11 @@
 .community-section {
   padding: 48px 4%;
-  background: var(--community-tint);
+  background: linear-gradient(to bottom, var(--community-tint), var(--faq-tint));
 }
 
-.adoption-browser { background: var(--page); }
+.adoption-browser {
+  background: linear-gradient(to bottom, var(--page), var(--vaccine-tint));
+}
 .pet-grid:empty { display: none; }
 
 .community-grid,
