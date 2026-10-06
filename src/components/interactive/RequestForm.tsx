@@ -8,6 +8,7 @@ import { Checkbox } from "../ui/checkbox";
 import { ScrollArea } from "../ui/scroll-area";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../ui/accordion";
 import { emailDraft } from "../../scripts/form-utils";
+import newsletterBear from "../../assets/clear/newsletter-grizzly.webp";
 
 export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" }) {
   const newsletter = kind === "newsletter";
@@ -41,7 +42,10 @@ export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" 
     <div className="consent-label"><Checkbox id={`${kind}-consent`} checked={consent} onCheckedChange={checked => { setConsent(checked === true); setErrors(previous => ({ ...previous, consent: "" })); setSummary(""); setStatus(""); }} aria-invalid={!!errors.consent} aria-describedby={`${kind}-consent-error`} /><Label htmlFor={`${kind}-consent`}>{newsletter ? "I’d like to receive news, updates, and special offers by email." : "You may publish my review with my first name."}</Label></div>
     <span id={`${kind}-consent-error`} className="field-error" aria-live="polite">{errors.consent}</span>
     {!newsletter && <p className="field-hint">Feedback is reviewed by the team before any publication.</p>}
-    <Button type="submit" className="paw-button">{newsletter ? "Prepare subscription" : "Prepare feedback"}</Button>
+    {newsletter ? <div className="newsletter-action">
+      <img className="newsletter-bear" src={newsletterBear.src} width={newsletterBear.width} height={newsletterBear.height} alt="" aria-hidden="true" />
+      <Button type="submit" className="paw-button">Prepare subscription</Button>
+    </div> : <Button type="submit" className="paw-button">Prepare feedback</Button>}
     {summary && <><ScrollArea className="summary-scroll"><pre className="request-summary" tabIndex={0}>{summary}</pre></ScrollArea><div className="dialog-actions"><Button asChild className="paw-button"><a href={emailDraft(newsletter ? "Newsletter subscription request" : "Feedback about my visit", summary)}>Open email draft</a></Button><Button type="button" className="paw-button secondary-action" onClick={async () => { try { await navigator.clipboard.writeText(summary); setStatus("Copied. Paste the request into a message to the clinic."); } catch { setStatus("Select the draft text to copy it, or use your email app."); } }}>Copy {newsletter ? "request" : "feedback"}</Button></div></>}
     <p className="form-status" role="status" aria-live="polite">{status}</p>
   </form>;

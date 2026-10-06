@@ -138,6 +138,29 @@
   font-size: 11px;
 }
 
+.footer-grid form .newsletter-action {
+  position: relative;
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+.footer-grid form .newsletter-bear {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.footer-grid form .newsletter-action .paw-button {
+  position: relative;
+  z-index: 1;
+  padding-left: 58px;
+}
+
 .footer-bottom {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
