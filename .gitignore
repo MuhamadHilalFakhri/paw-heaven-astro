@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 .astro
+.lovable/
 dist-ssr
 .output
 .vinxi
