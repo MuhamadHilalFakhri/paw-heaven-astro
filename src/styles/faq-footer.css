@@ -3,7 +3,7 @@
   grid-template-columns: 1.1fr 1fr;
   gap: 38px;
   padding: 38px 4% 36px;
-  background: var(--page);
+  background: var(--faq-tint);
 }
 
 .faq-section h2 {

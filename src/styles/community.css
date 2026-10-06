@@ -1,6 +1,6 @@
 .community-section {
   padding: 48px 4%;
-  background: var(--services-tint);
+  background: var(--community-tint);
 }
 
 .adoption-browser { background: var(--page); }

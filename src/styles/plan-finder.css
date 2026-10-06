@@ -3,7 +3,7 @@
   margin: 28px auto 0;
   padding: 20px 24px;
   border-radius: var(--radius-card);
-  background: var(--services-tint);
+  background: var(--plan-highlight);
 }
 
 .plan-finder label {
