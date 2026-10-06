@@ -1,0 +1,178 @@
+.footer-grid > div,
+.faq-section > div,
+.adoption-section > div {
+  min-width: 0;
+}
+
+.footer-grid a,
+.footer-grid p {
+  overflow-wrap: anywhere;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .paw-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .desktop-nav,
+  .header-book {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .paw-hero h1 {
+    font-size: clamp(28px, 7.4vw, 48px);
+  }
+
+  .paw-hero > p {
+    max-width: 95%;
+    font-size: 13px;
+  }
+
+  .paw-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .vaccine-card {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    background: var(--hero-tint);
+  }
+
+  .vaccine-copy {
+    position: static;
+    order: -1;
+    padding: 24px 20px 0;
+  }
+
+  .vaccine-copy p {
+    max-width: 100%;
+    font-size: 13px;
+  }
+
+  .vaccine-card > img {
+    margin-top: 0;
+  }
+
+  .vaccine-copy .paw-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .section-heading p,
+  .feature-card p,
+  .service-card p,
+  .adoption-section p,
+  .testimonial-band p,
+  .plan-description,
+  .plan-benefits .check-list,
+  .check-list,
+  .paw-faq-trigger,
+  .paw-faq-answer,
+  .footer-grid p,
+  .footer-grid a,
+  .footer-grid input {
+    font-size: 13px;
+  }
+
+  .plan-benefits h4,
+  .adoption-section h3 {
+    font-size: 13px;
+  }
+
+  .footer-grid form {
+    flex-wrap: wrap;
+  }
+
+  .footer-grid form .paw-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .footer-grid a {
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-grid,
+  .plan-grid,
+  .faq-section,
+  .adoption-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card h3,
+  .plan-card h3 {
+    font-size: 18px;
+  }
+
+  .feature-card img {
+    height: 160px;
+  }
+
+  .plan-card {
+    padding: 24px;
+  }
+
+  .plan-description {
+    min-height: 0;
+  }
+
+  .plan-card img {
+    height: 120px;
+  }
+
+  .plan-price {
+    gap: 8px;
+  }
+
+  .plan-price strong {
+    width: auto;
+  }
+
+  .adoption-section > img,
+  .faq-illustration {
+    max-width: 340px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .adoption-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 17px;
+  }
+
+  .service-card img {
+    height: 140px;
+  }
+}

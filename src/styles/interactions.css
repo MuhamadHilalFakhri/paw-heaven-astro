@@ -1,0 +1,91 @@
+.paw-button,
+.mobile-toggle {
+  touch-action: manipulation;
+  transition: background-color 180ms ease, translate 180ms ease, box-shadow 180ms ease;
+}
+
+.paw-button:active,
+.mobile-toggle:active {
+  translate: 0 2px;
+}
+
+.feature-card,
+.service-card,
+.plan-card {
+  transition: translate 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+
+.desktop-nav a,
+.footer-grid a {
+  transition: color 180ms ease;
+}
+
+.mobile-nav {
+  top: calc(100% - 8px);
+  z-index: 20;
+  border-radius: var(--radius-card);
+  box-shadow: 0 14px 32px oklch(0.29 0.054 220 / 15%);
+}
+
+.mobile-nav a {
+  border-radius: var(--radius);
+  transition: background-color 180ms ease;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  background: var(--hero-tint);
+}
+
+.paw-faq-item {
+  overflow: hidden;
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+.paw-faq-answer {
+  padding-bottom: 16px;
+}
+
+.footer-grid input {
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.footer-grid input:focus {
+  border-color: var(--doodle);
+  background: var(--page);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .paw-button:hover {
+    translate: 0 -3px;
+    box-shadow: 0 6px 14px oklch(0.29 0.054 220 / 16%);
+  }
+
+  .feature-card:hover,
+  .service-card:hover,
+  .plan-card:hover {
+    translate: 0 -6px;
+    box-shadow: 0 10px 24px oklch(0.29 0.054 220 / 12%);
+  }
+
+  .desktop-nav a:hover,
+  .footer-grid a:hover {
+    color: var(--doodle);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .paw-button:hover,
+  .paw-button:active,
+  .mobile-toggle:active,
+  .feature-card:hover,
+  .service-card:hover,
+  .plan-card:hover {
+    translate: none;
+  }
+}

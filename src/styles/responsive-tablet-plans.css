@@ -1,0 +1,65 @@
+@media (max-width: 760px) {
+  .plans-section h2 {
+    font-size: 27px;
+  }
+
+  .plan-grid {
+    gap: 12px;
+  }
+
+  .plan-card {
+    padding: 16px 10px;
+  }
+
+  .plan-card h3 {
+    font-size: 14px;
+  }
+
+  .plan-description {
+    min-height: 60px;
+    font-size: 10px;
+  }
+
+  .plan-card img {
+    height: 80px;
+  }
+
+  .plan-price {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .plan-price strong {
+    width: 100%;
+    font-size: 27px;
+  }
+
+  .plan-benefits {
+    padding: 12px 8px;
+  }
+
+  .plan-benefits .check-list {
+    font-size: 9px;
+  }
+
+  .faq-section {
+    gap: 24px;
+  }
+
+  .faq-section h2 {
+    font-size: 25px;
+  }
+
+  .paw-faq-trigger {
+    font-size: 10px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 2fr 1fr;
+    gap: 28px;
+  }
+
+  .footer-grid form .paw-button {
+    padding: 0 12px;
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  --radius: 1rem;
+  --radius-card: 1.5rem;
+  --radius-panel: clamp(20px, 3vw, 32px);
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Nunito", sans-serif;
+  --background: oklch(0.63 0.12 221);
+  --foreground: oklch(0.29 0.054 220);
+  --primary: oklch(0.05 0 0);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --border: oklch(0.79 0.03 220);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --leaf: oklch(0.57 0.12 151);
+  --page: oklch(1 0 0);
+  --body-ink: oklch(0.14 0 0);
+  --hero-tint: oklch(0.94 0.045 209);
+  --trust-tint: oklch(0.96 0.035 216);
+  --services-tint: oklch(0.975 0.014 239);
+  --feature-pink: oklch(0.94 0.042 354);
+  --feature-peach: oklch(0.953 0.043 65);
+  --feature-rose: oklch(0.929 0.037 21);
+  --plan-neutral: oklch(0.975 0 0);
+  --plan-highlight: oklch(0.94 0.045 354);
+  --doodle: oklch(0.59 0.13 275);
+  --faq-open: oklch(0.905 0.018 215);
+  --card-line: oklch(0.42 0.012 220);
+  --subtle-shadow: 0 2px 12px oklch(0.3 0.03 220 / 5%);
+  --hero-wash: linear-gradient(to bottom, var(--hero-tint), var(--page) 38%);
+}

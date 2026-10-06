@@ -1,0 +1,108 @@
+@media (max-width: 480px) {
+  .site-shell {
+    padding: 12px 3%;
+  }
+
+  .paw-brand {
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .paw-hero h1 {
+    font-size: 34px;
+  }
+
+  .paw-hero {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+  .paw-hero > p {
+    font-size: 10px;
+  }
+
+  .hero-action {
+    margin-top: 38px;
+  }
+
+  .hero-illustration {
+    margin-top: 30px;
+  }
+
+  .intro-section {
+    padding: 24px 6% 28px;
+  }
+
+  .intro-section h2 {
+    font-size: 21px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .feature-card {
+    padding: 18px 22px 24px;
+    border-radius: 30px;
+  }
+
+  .feature-card img {
+    height: 150px;
+  }
+
+  .feature-card h3 {
+    font-size: 17px;
+  }
+
+  .feature-card p {
+    font-size: 11px;
+  }
+
+  .testimonial-band {
+    padding-top: 35px;
+  }
+
+  .testimonial-band h2 {
+    font-size: 25px;
+  }
+
+  .trust-leaf {
+    top: 20px;
+    left: 27%;
+  }
+
+  .testimonial-band img {
+    height: 150px;
+  }
+
+  .testimonial-band p {
+    font-size: 10px;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-section {
+    padding: 32px 6%;
+  }
+
+  .service-card img {
+    height: 100px;
+  }
+
+  .service-card h3,
+  .section-heading p {
+    font-size: 10px;
+  }
+
+  .section-heading h2 {
+    font-size: 24px;
+  }
+
+  .section-heading p {
+    margin-top: 16px;
+  }
+
+}

@@ -1,0 +1,152 @@
+.booking-progress {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.booking-progress li {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  color: var(--body-ink);
+  font-size: 11px;
+  text-align: center;
+}
+
+.booking-progress span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.booking-progress [aria-current="step"] span,
+.booking-progress .is-complete span {
+  background: var(--foreground);
+  color: var(--page);
+}
+
+.booking-progress [aria-current="step"] {
+  font-weight: 700;
+}
+
+.paw-dialog fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.paw-dialog legend {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.paw-dialog label,
+.feedback-form label,
+.plan-finder label {
+  display: block;
+  margin: 16px 0 8px;
+  color: var(--body-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.paw-dialog input:not([type="hidden"]),
+.paw-dialog select,
+.paw-dialog textarea,
+.feedback-form input,
+.feedback-form select,
+.feedback-form textarea,
+.plan-finder select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--page);
+  color: var(--body-ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+pre:focus-visible,
+.comparison-scroll:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+[aria-invalid="true"] {
+  border-color: #ad2941 !important;
+}
+
+.field-error {
+  display: block;
+  margin-top: 4px;
+  color: #ad2941;
+  font-size: 13px;
+}
+
+.field-hint,
+.form-status {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.field-hint a {
+  text-decoration: underline;
+}
+
+.request-summary {
+  margin: 18px 0 0;
+  padding: 20px;
+  overflow-wrap: anywhere;
+  border-radius: var(--radius);
+  background: var(--services-tint);
+  color: var(--body-ink);
+  font: inherit;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.form-status:not(:empty) {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--hero-tint);
+}
+
+.feedback-form .consent-label,
+.footer-grid form .consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin: 16px 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.consent-label input[type="checkbox"] {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  margin-top: 2px;
+  padding: 0;
+  accent-color: var(--foreground);
+}
+
+.footer-grid form { flex-wrap: wrap; }
+.footer-grid form .field-error { flex-basis: 100%; }

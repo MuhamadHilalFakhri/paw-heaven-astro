@@ -1,0 +1,55 @@
+.adoption-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+  padding: 48px 4%;
+}
+
+.adoption-section > img {
+  width: 100%;
+}
+
+.adoption-section h2 {
+  font-size: 33px;
+}
+
+.adoption-section p {
+  margin-top: 20px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.adoption-section h3 {
+  margin: 20px 0 12px;
+  color: var(--body-ink);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.check-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  color: var(--body-ink);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.adoption-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.adoption-actions .paw-button {
+  padding: 0 20px;
+  font-size: 10px;
+}

@@ -1,0 +1,153 @@
+.faq-section {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 38px;
+  padding: 38px 4% 36px;
+  background: var(--page);
+}
+
+.faq-section h2 {
+  font-size: 33px;
+  line-height: 1.35;
+}
+
+.faq-section h2 span {
+  color: var(--doodle);
+}
+
+.faq-illustration {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.faq-questions {
+  align-self: end;
+}
+
+.faq-dog {
+  width: 110px;
+  height: 66px;
+  margin-left: 30px;
+  object-fit: contain;
+}
+
+.paw-faq-item {
+  margin-bottom: 12px;
+  padding: 0 14px;
+  border: 1px solid var(--services-tint);
+  border-radius: var(--radius);
+  background: var(--page);
+  box-shadow: var(--subtle-shadow);
+}
+
+.paw-faq-item[data-state="open"] {
+  border-color: var(--border);
+  background: var(--faq-open);
+}
+
+.paw-faq-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+  color: var(--body-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.faq-plus,
+.faq-minus {
+  margin-left: auto;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.faq-minus {
+  display: none;
+}
+
+.paw-faq-answer {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.paw-footer {
+  padding: 32px 4% 20px;
+  background: var(--trust-tint);
+}
+
+.footer-illustration {
+  width: 100%;
+  margin-bottom: 38px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.6fr 1fr 0.7fr 0.6fr;
+  gap: 36px;
+  color: var(--body-ink);
+}
+
+.footer-grid h3 {
+  margin-bottom: 10px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-grid h4 {
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footer-grid p,
+.footer-grid a {
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.footer-grid a {
+  margin-bottom: 8px;
+}
+
+.footer-grid form {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.footer-grid input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  border-bottom: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: transparent;
+  font-size: 11px;
+}
+
+.footer-grid form .paw-button {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 20px;
+  font-size: 11px;
+}
+
+.footer-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 38px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+  font-size: 9px;
+}

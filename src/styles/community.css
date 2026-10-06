@@ -1,0 +1,147 @@
+.community-section {
+  padding: 48px 4%;
+  background: var(--services-tint);
+}
+
+.adoption-browser { background: var(--page); }
+.pet-grid:empty { display: none; }
+
+.community-grid,
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.community-card,
+.community-callout,
+.pet-profile {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--page);
+}
+
+.community-card h3,
+.community-callout h3,
+.pet-profile h3 { font-size: 22px; }
+
+.community-card p,
+.community-callout p,
+.pet-profile p,
+.pet-profile dl {
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.community-card .paw-button,
+.community-callout .paw-button,
+.pet-profile .paw-button {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.pet-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.pet-filters button,
+.review-controls button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.pet-filters [aria-pressed="true"] {
+  background: var(--foreground);
+  color: var(--page);
+}
+
+.pet-results {
+  margin-top: 16px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.community-callout {
+  max-width: 680px;
+  margin: 24px auto 0;
+  background: var(--hero-tint);
+  text-align: center;
+}
+
+.pet-profile > img {
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.pet-status {
+  display: inline-block;
+  margin: 16px 0 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--hero-tint);
+  font-size: 12px;
+}
+
+.pet-profile dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+}
+
+.pet-profile dd { margin: 0; }
+.pet-profile dt { font-weight: 700; }
+
+.feedback-details summary,
+.pet-profile summary {
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-carousel figure { margin: 20px 0; }
+.review-carousel blockquote { margin: 0; }
+.review-carousel figcaption { font-size: 14px; font-weight: 700; }
+
+.review-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.clinic-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.clinic-gallery img {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .community-section { padding: 32px 6%; }
+  .community-grid,
+  .pet-grid { grid-template-columns: 1fr; }
+}

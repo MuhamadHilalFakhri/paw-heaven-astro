@@ -1,0 +1,144 @@
+@media (max-width: 480px) {
+  .adoption-section {
+    grid-template-columns: 1fr;
+    padding: 32px 6%;
+  }
+
+  .adoption-section > img {
+    max-width: 310px;
+    margin: auto;
+  }
+
+  .adoption-section h2 {
+    font-size: 25px;
+  }
+
+  .adoption-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .vaccine-section {
+    padding: 12px 6% 0;
+  }
+
+  .vaccine-card {
+    padding-top: 190px;
+    background: var(--hero-tint);
+  }
+
+  .vaccine-card > img {
+    margin-top: -65px;
+  }
+
+  .vaccine-copy {
+    inset: 18px 15px auto;
+  }
+
+  .vaccine-copy h2 {
+    font-size: 23px;
+  }
+
+  .vaccine-copy p {
+    max-width: 100%;
+    font-size: 10px;
+  }
+
+  .plans-section {
+    padding: 34px 6%;
+  }
+
+  .plan-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .plan-card {
+    padding: 22px;
+  }
+
+  .plan-card h3 {
+    font-size: 20px;
+  }
+
+  .plan-description {
+    min-height: 0;
+    font-size: 12px;
+  }
+
+  .plan-card img {
+    height: 110px;
+  }
+
+  .plan-price {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .plan-price strong {
+    width: auto;
+    font-size: 34px;
+  }
+
+  .plan-price span {
+    font-size: 10px;
+  }
+
+  .plan-benefits h4,
+  .plan-benefits .check-list {
+    font-size: 12px;
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 28px 6%;
+  }
+
+  .faq-illustration {
+    max-width: 290px;
+    margin: 22px auto 0;
+  }
+
+  .faq-dog {
+    width: 90px;
+    height: 48px;
+  }
+
+  .paw-faq-trigger,
+  .paw-faq-answer {
+    font-size: 11px;
+  }
+
+  .paw-footer {
+    padding: 24px 6%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-illustration {
+    margin-bottom: 28px;
+  }
+
+  .footer-grid h3 {
+    font-size: 15px;
+  }
+
+  .footer-bottom p {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,57 @@
+@media (max-width: 1050px) {
+  .paw-header {
+    gap: 14px;
+    padding: 18px 5%;
+  }
+
+  .desktop-nav {
+    gap: 13px;
+    font-size: 10px;
+  }
+
+  .paw-brand {
+    font-size: 14px;
+  }
+
+  .paw-hero h1 {
+    font-size: 58px;
+  }
+
+  .feature-card {
+    padding: 20px 18px 26px;
+  }
+
+  .feature-card img {
+    height: 160px;
+  }
+
+  .adoption-actions {
+    gap: 10px;
+  }
+
+  .adoption-actions .paw-button {
+    padding: 0 16px;
+  }
+
+  .vaccine-copy {
+    top: 24px;
+  }
+
+  .vaccine-copy h2 {
+    font-size: 30px;
+  }
+
+  .vaccine-copy p {
+    max-width: 520px;
+    margin: 12px 0 18px;
+  }
+
+  .footer-grid {
+    gap: 24px;
+  }
+
+  .intro-section h2 {
+    font-size: 25px;
+  }
+}
+

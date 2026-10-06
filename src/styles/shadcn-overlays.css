@@ -1,0 +1,14 @@
+[data-slot="dialog-overlay"], [data-slot="sheet-overlay"] { z-index: 60; background: oklch(0.2 0.03 220 / 55%); backdrop-filter: blur(5px); }
+.shadcn-dialog { z-index: 70; display: block; width: min(660px, calc(100% - 24px)); height: min(760px, calc(100dvh - 32px)); max-height: none; margin: 0; padding: 0; overflow: hidden; }
+.dialog-scroll { height: 100%; }
+.paw-sheet { z-index: 70; width: min(350px, 90vw); background: var(--page); color: var(--body-ink); }
+.sheet-scroll { flex: 1; min-height: 0; padding: 24px; }
+.sheet-navigation { display: grid; gap: 12px; margin-bottom: 24px; }
+.sheet-navigation a { justify-content: flex-start; min-height: 48px; border-radius: 12px; }
+.paw-sheet > button { width: 44px; height: 44px; top: 8px; right: 8px; }
+.paw-sheet [data-slot="sheet-header"] { padding: 24px 56px 0 24px; }
+.gallery-photo { width: 100%; height: auto; border-radius: var(--radius); }
+body:has([data-slot="sheet-content"]) .mobile-booking-bar { display: none; }
+@media (max-width: 480px) {
+  .shadcn-dialog { width: calc(100% - 16px); height: calc(100dvh - 24px); border-radius: 20px; }
+}

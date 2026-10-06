@@ -1,0 +1,118 @@
+.vaccine-section {
+  padding: 30px 4% 0;
+}
+
+.vaccine-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+}
+
+.vaccine-card > img {
+  display: block;
+  width: 100%;
+}
+
+.vaccine-copy {
+  position: absolute;
+  inset: 28px 24px auto;
+}
+
+.vaccine-copy h2 {
+  font-size: 34px;
+  line-height: 1.4;
+}
+
+.vaccine-copy p {
+  max-width: 620px;
+  margin: 20px 0 24px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.plans-section {
+  padding: 56px 4% 48px;
+}
+
+.plans-section h2 {
+  font-size: 31px;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 42px;
+}
+
+.plan-card {
+  min-width: 0;
+  padding: 22px 18px 16px;
+  border-radius: var(--radius-card);
+  color: var(--body-ink);
+}
+
+.plan-neutral {
+  background: var(--plan-neutral);
+}
+
+.plan-highlight {
+  background: var(--plan-highlight);
+}
+
+.plan-card h3 {
+  font-size: 17px;
+}
+
+.plan-description {
+  min-height: 46px;
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.plan-card img {
+  display: block;
+  width: 100%;
+  height: 115px;
+  margin: 14px 0;
+  object-fit: contain;
+}
+
+.plan-price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.plan-price strong {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.plan-price span {
+  font-size: 9px;
+}
+
+.plan-card .paw-button {
+  width: 100%;
+}
+
+.plan-benefits {
+  margin-top: 20px;
+  padding: 14px 12px;
+  border-radius: var(--radius);
+  background: var(--page);
+}
+
+.plan-benefits h4 {
+  min-height: 30px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.plan-benefits .check-list {
+  gap: 13px;
+  font-size: 10px;
+}

@@ -1,0 +1,95 @@
+.plan-finder {
+  max-width: 620px;
+  margin: 28px auto 0;
+  padding: 20px 24px;
+  border-radius: var(--radius-card);
+  background: var(--services-tint);
+}
+
+.plan-finder label {
+  margin-top: 0;
+}
+
+.plan-finder p {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.plan-comparison {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--page);
+}
+
+.plan-comparison summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 16px 20px;
+  color: var(--body-ink);
+  font-size: 14px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+
+.plan-comparison summary::-webkit-details-marker {
+  display: none;
+}
+
+.comparison-scroll {
+  margin: 0 16px 16px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.comparison-scroll table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  color: var(--body-ink);
+  font-size: 13px;
+}
+
+.comparison-scroll caption {
+  padding: 12px;
+  text-align: left;
+}
+
+.comparison-scroll th,
+.comparison-scroll td {
+  padding: 14px;
+  border-bottom: 1px solid var(--input);
+  text-align: left;
+}
+
+.comparison-scroll thead {
+  background: var(--hero-tint);
+}
+
+.plan-card {
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.plan-card.is-recommended {
+  border-color: var(--doodle);
+  box-shadow: 0 0 0 3px var(--feature-pink);
+}
+
+.recommended-badge {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .plan-finder {
+    padding: 20px 16px;
+  }
+}

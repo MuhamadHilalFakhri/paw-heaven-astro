@@ -1,0 +1,159 @@
+@media (max-width: 760px) {
+  .site-shell {
+    padding: 20px 4%;
+  }
+
+  .paw-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 70px;
+  }
+
+  .desktop-nav,
+  .header-book {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: inline-flex;
+  }
+
+  .paw-hero {
+    padding-top: 35px;
+  }
+
+  .paw-hero h1 {
+    font-size: 42px;
+  }
+
+  .paw-hero > p {
+    max-width: 85%;
+    font-size: 11px;
+  }
+
+  .hero-mark {
+    font-size: 22px;
+  }
+
+  .mark-one {
+    top: 65px;
+    left: 3%;
+  }
+
+  .mark-two {
+    top: 35px;
+    right: 3%;
+  }
+
+  .mark-three {
+    top: 205px;
+    left: 3%;
+  }
+
+  .mark-four {
+    top: 220px;
+    right: 6%;
+  }
+
+  .hero-illustration {
+    margin-top: 32px;
+  }
+
+  .intro-section h2 {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  .intro-line {
+    display: inline;
+  }
+
+  .intro-decoration {
+    width: 35px;
+    height: 28px;
+  }
+
+  .feature-grid {
+    gap: 12px;
+    margin-top: 35px;
+  }
+
+  .feature-card {
+    padding: 15px 10px 20px;
+    border-radius: 24px;
+  }
+
+  .feature-card img {
+    height: 110px;
+    margin-bottom: 12px;
+  }
+
+  .feature-card h3 {
+    font-size: 12px;
+  }
+
+  .feature-card p {
+    font-size: 9px;
+  }
+
+  .testimonial-band h2,
+  h2 {
+    font-size: 27px;
+  }
+
+  .testimonial-band img {
+    height: 210px;
+  }
+
+  .service-grid {
+    gap: 12px;
+  }
+
+  .service-card {
+    padding: 12px;
+  }
+
+  .service-card img {
+    height: 100px;
+  }
+
+  .service-card h3 {
+    font-size: 13px;
+  }
+
+  .service-card p {
+    font-size: 10px;
+  }
+
+  .adoption-section {
+    gap: 20px;
+  }
+
+  .adoption-section h2 {
+    font-size: 24px;
+  }
+
+  .adoption-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vaccine-copy {
+    inset: 18px 18px auto;
+  }
+
+  .vaccine-copy h2 {
+    font-size: 24px;
+  }
+
+  .vaccine-copy p {
+    max-width: 75%;
+    margin: 10px 0 12px;
+    font-size: 10px;
+  }
+
+  .vaccine-copy .paw-button {
+    min-height: 32px;
+    font-size: 9px;
+  }
+
+}
