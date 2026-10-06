@@ -141,24 +141,24 @@
 .footer-grid form .newsletter-action {
   position: relative;
   display: inline-flex;
-  margin-top: 20px;
+  margin-top: 52px;
 }
 
 .footer-grid form .newsletter-bear {
   position: absolute;
   z-index: 2;
-  bottom: 0;
-  left: 0;
-  width: 64px;
-  height: 64px;
+  top: -52px;
+  left: 50%;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
 .footer-grid form .newsletter-action .paw-button {
   position: relative;
   z-index: 1;
-  padding-left: 58px;
 }
 
 .footer-bottom {

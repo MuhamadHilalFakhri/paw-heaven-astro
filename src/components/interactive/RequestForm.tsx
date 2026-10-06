@@ -8,7 +8,7 @@ import { Checkbox } from "../ui/checkbox";
 import { ScrollArea } from "../ui/scroll-area";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../ui/accordion";
 import { emailDraft } from "../../scripts/form-utils";
-import newsletterBear from "../../assets/clear/newsletter-grizzly.webp";
+import newsletterBear from "../../assets/clear/newsletter-polar-bear.webp";
 
 export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" }) {
   const newsletter = kind === "newsletter";
