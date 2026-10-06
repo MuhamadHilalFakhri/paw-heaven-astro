@@ -41,15 +41,15 @@
 }
 
 .feature-pink {
-  background: var(--feature-pink);
+  background: var(--page);
 }
 
 .feature-peach {
-  background: var(--feature-peach);
+  background: var(--page);
 }
 
 .feature-rose {
-  background: var(--feature-rose);
+  background: var(--page);
 }
 
 .feature-card img {
