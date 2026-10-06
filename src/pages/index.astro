@@ -1,0 +1,44 @@
+---
+import AdoptionSection from "../components/AdoptionSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import HeroSection from "../components/HeroSection.astro";
+import IntroductionSection from "../components/IntroductionSection.astro";
+import PlansSection from "../components/PlansSection.astro";
+import ServicesSection from "../components/ServicesSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import HeaderNav from "../components/interactive/HeaderNav";
+import logo from "../assets/clear/logo.webp";
+import TrustBand from "../components/TrustBand.astro";
+import VaccineSection from "../components/VaccineSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InteractionDialogs from "../components/interactive/InteractionDialogs";
+import PageScrollArea from "../components/interactive/PageScrollArea";
+import MobileBookingBar from "../components/MobileBookingBar.astro";
+import AdoptionBrowser from "../components/AdoptionBrowser.astro";
+import CommunitySection from "../components/CommunitySection.astro";
+---
+
+<BaseLayout>
+  <PageScrollArea client:load>
+  <main id="top" class="site-shell">
+    <div class="page-frame">
+      <header class="paw-header"><HeaderNav logo={{ src: logo.src, width: logo.width, height: logo.height }} client:load /></header>
+      <div class="hero-wash">
+        <HeroSection />
+      </div>
+      <IntroductionSection />
+      <TrustBand />
+      <ServicesSection />
+      <AdoptionSection />
+      <AdoptionBrowser />
+      <VaccineSection />
+      <PlansSection />
+      <CommunitySection />
+      <FaqSection />
+      <SiteFooter />
+    </div>
+  </main>
+  </PageScrollArea>
+  <InteractionDialogs client:load />
+  <MobileBookingBar />
+</BaseLayout>
