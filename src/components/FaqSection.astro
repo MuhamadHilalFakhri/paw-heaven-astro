@@ -1,0 +1,32 @@
+---
+import faqDogImage from "../assets/clear/faq-dog.webp";
+import faqImage from "../assets/clear/faq.webp";
+import FaqAccordion from "./interactive/FaqAccordion";
+---
+
+<section id="faq" class="faq-section">
+  <div>
+    <h2>Frequently Asked<br />Questions <span aria-hidden="true">✧</span></h2>
+    <img
+      class="faq-illustration"
+      src={faqImage.src}
+      width={faqImage.width}
+      height={faqImage.height}
+      alt="A woman comforting a rabbit and a dog"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="faq-questions">
+    <img
+      class="faq-dog"
+      src={faqDogImage.src}
+      width={faqDogImage.width}
+      height={faqDogImage.height}
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+    <FaqAccordion client:load />
+  </div>
+</section>

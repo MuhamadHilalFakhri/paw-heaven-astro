@@ -1,0 +1,43 @@
+---
+import groomingImage from "../assets/clear/grooming.webp";
+import homeVisitImage from "../assets/clear/home-visit.webp";
+import introDogImage from "../assets/clear/intro-dog.webp";
+import introFishImage from "../assets/clear/intro-fish.webp";
+import introVetImage from "../assets/clear/intro-vet.webp";
+import vetImage from "../assets/clear/vet.webp";
+import type { ImageMetadata } from "astro";
+import { features } from "../data/site-content";
+import { Card } from "./ui/card";
+
+const featureImages: Record<string, ImageMetadata> = {
+  grooming: groomingImage,
+  homeVisit: homeVisitImage,
+  vet: vetImage,
+};
+---
+
+<section class="intro-section" aria-label="About Paw Heaven">
+  <h2 class="intro-heading">
+    <span class="intro-line">
+      At Paw Heaven <img class="intro-decoration" src={introVetImage.src} width={introVetImage.width} height={introVetImage.height} alt="" /> Your pets are more than animals;
+    </span>{" "}
+    <span class="intro-line">
+      they’re family. We provide loving, expert care <img class="intro-decoration" src={introFishImage.src} width={introFishImage.width} height={introFishImage.height} alt="" />
+    </span>{" "}
+    <span class="intro-line">
+      that’s safe, simple, and stress-free. <img class="intro-decoration" src={introDogImage.src} width={introDogImage.width} height={introDogImage.height} alt="" />
+    </span>
+  </h2>
+  <div class="feature-grid">
+    {features.map((item) => {
+      const image = featureImages[item.image];
+      return (
+        <Card className={`feature-card ${item.color}`}>
+          <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </Card>
+      );
+    })}
+  </div>
+</section>

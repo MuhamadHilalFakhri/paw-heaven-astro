@@ -1,0 +1,34 @@
+---
+import heroImage from "../assets/clear/hero.webp";
+import teddyImage from "../assets/clear/teddy.webp";
+import ActionLink from "./interactive/ActionLink";
+---
+
+<section class="paw-hero" aria-labelledby="hero-title">
+  <span class="hero-mark mark-one" aria-hidden="true">✺</span>
+  <span class="hero-mark mark-two" aria-hidden="true">⌁</span>
+  <span class="hero-mark mark-three" aria-hidden="true">〰</span>
+  <span class="hero-mark mark-four" aria-hidden="true">✦</span>
+  <h1 id="hero-title">Loved by Pets<br />Trusted by Owners</h1>
+  <p>From routine checkups to emergency care, we’re here for every wag, purr, and cuddle.</p>
+  <div class="hero-action">
+    <img
+      class="teddy-decoration"
+      src={teddyImage.src}
+      width={teddyImage.width}
+      height={teddyImage.height}
+      alt=""
+    />
+    <ActionLink href="#contact" data-booking>Book Appointment</ActionLink>
+  </div>
+  <img
+    class="hero-illustration"
+    src={heroImage.src}
+    width={heroImage.width}
+    height={heroImage.height}
+    alt="Three pet owners caring for their dogs and cats"
+    fetchpriority="high"
+    loading="eager"
+    decoding="async"
+  />
+</section>

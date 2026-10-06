@@ -1,0 +1,44 @@
+---
+import boardingImage from "../assets/clear/service-boarding.webp";
+import checkupImage from "../assets/clear/service-checkup.webp";
+import emergencyImage from "../assets/clear/service-emergency.webp";
+import groomingImage from "../assets/clear/service-grooming.webp";
+import homeVisitImage from "../assets/clear/service-home.webp";
+import preventiveImage from "../assets/clear/service-preventive.webp";
+import type { ImageMetadata } from "astro";
+import { services } from "../data/site-content";
+import { Card } from "./ui/card";
+import { Button } from "./ui/button";
+
+const serviceImages: Record<string, ImageMetadata> = {
+  grooming: groomingImage,
+  checkup: checkupImage,
+  emergency: emergencyImage,
+  boarding: boardingImage,
+  homeVisit: homeVisitImage,
+  preventive: preventiveImage,
+};
+---
+
+<section id="services" class="services-section">
+  <div class="section-heading">
+    <h2>Your Pet’s Happy Place<br />for Care & Comfort</h2>
+    <p>
+      From grooming to preventive care, our services are designed to make pet care easier.<br />
+      Every visit receives thoughtful attention for you and your pet.
+    </p>
+  </div>
+  <div class="service-grid">
+    {services.map((item) => {
+      const image = serviceImages[item.image];
+      return (
+        <Card className="service-card">
+          <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          <Button type="button" className="paw-button secondary-action service-detail-button" data-service-details={item.image} data-service-title={item.title} aria-haspopup="dialog">Explore service</Button>
+        </Card>
+      );
+    })}
+  </div>
+</section>

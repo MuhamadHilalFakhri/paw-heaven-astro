@@ -1,0 +1,34 @@
+---
+import adoptionImage from "../assets/clear/adoption.webp";
+import { adoptionReasons } from "../data/site-content";
+import ActionLink from "./interactive/ActionLink";
+---
+
+<section id="about" class="adoption-section">
+  <img
+    src={adoptionImage.src}
+    width={adoptionImage.width}
+    height={adoptionImage.height}
+    alt="A man adopting a ginger cat"
+    loading="lazy"
+    decoding="async"
+  />
+  <div>
+    <h2>A new beginning starts<br />with a forever home</h2>
+    <p>
+      Adoption can bring a new companion into your family. Our team can help you learn about available pets and the care they need.
+    </p>
+    <h3>Why Choose Adoption with Us?</h3>
+    <ul class="check-list">
+      {adoptionReasons.map((text) => (
+        <li><span class="check-icon" aria-hidden="true">✓</span><span>{text}</span></li>
+      ))}
+    </ul>
+    <div class="adoption-actions">
+      <ActionLink href="#contact" data-booking data-booking-service="adoption">Book Appointment</ActionLink>
+      <ActionLink href="#adoptable-pets" className="paw-button secondary-action">
+        Ask about adoption
+      </ActionLink>
+    </div>
+  </div>
+</section>

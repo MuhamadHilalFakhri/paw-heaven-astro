@@ -1,0 +1,43 @@
+---
+import footerImage from "../assets/clear/footer.webp";
+import { navigationLinks } from "../data/site-content";
+import RequestForm from "./interactive/RequestForm";
+---
+
+<footer id="contact" class="paw-footer">
+  <img
+    class="footer-illustration"
+    src={footerImage.src}
+    width={footerImage.width}
+    height={footerImage.height}
+    alt="Four colorful portraits of people holding their beloved pets"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="footer-grid">
+    <div>
+      <h3>Newsletter</h3>
+      <p>Ask to receive the latest news, updates, and special offers by email.</p>
+      <RequestForm kind="newsletter" client:load />
+    </div>
+    <div>
+      <h3>Get in touch</h3>
+      <a href="mailto:Pawheaven@gmail.com">Pawheaven@gmail.com</a>
+      <a href="tel:+861815785051">+86 181 578 5051</a>
+      <h4>Address</h4>
+      <p>9235 Bayberry Drive<br />Hendersonville, NC 28792</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      {navigationLinks.map(({ label, href }) => <a href={href}>{label}</a>)}
+    </div>
+    <div>
+      <h3>Policies</h3>
+      <p>For return, privacy, and terms questions, contact our team.</p>
+      <a href="mailto:Pawheaven@gmail.com?subject=Policy%20question">Ask about policies</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>©2026 Paw Heaven. All rights reserved.</p>
+  </div>
+</footer>

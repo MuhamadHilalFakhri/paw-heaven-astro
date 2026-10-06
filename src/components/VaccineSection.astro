@@ -1,0 +1,22 @@
+---
+import vaccineImage from "../assets/clear/vaccine.webp";
+import ActionLink from "./interactive/ActionLink";
+---
+
+<section class="vaccine-section" aria-labelledby="vaccine-title">
+  <div class="vaccine-card">
+    <img
+      src={vaccineImage.src}
+      width={vaccineImage.width}
+      height={vaccineImage.height}
+      alt="A veterinarian examining a fluffy golden cat"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="vaccine-copy">
+      <h2 id="vaccine-title">Start healthy with<br />a first examination</h2>
+      <p>Ask our team about the complimentary initial examination mentioned in our current offer.</p>
+      <ActionLink href="#contact" data-booking data-booking-service="checkup" data-booking-context="Initial examination offer enquiry">Ask about the offer</ActionLink>
+    </div>
+  </div>
+</section>

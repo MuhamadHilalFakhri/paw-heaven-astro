@@ -1,0 +1,54 @@
+---
+import clubImage from "../assets/clear/plan-club.webp";
+import starterImage from "../assets/clear/plan-starter.webp";
+import wellnessImage from "../assets/clear/plan-wellness.webp";
+import type { ImageMetadata } from "astro";
+import { plans } from "../data/site-content";
+import PlanFinder from "./interactive/PlanFinder";
+import ActionLink from "./interactive/ActionLink";
+import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
+
+const planImages: Record<string, ImageMetadata> = {
+  starter: starterImage,
+  wellness: wellnessImage,
+  club: clubImage,
+};
+---
+
+<section id="plans" class="plans-section">
+  <div class="section-heading">
+    <h2>Affordable Plans, For Happy Paws</h2>
+    <p>
+      Explore monthly care plans designed to support your pet’s health and comfort.<br class="desktop-break" />
+      Contact our team to confirm the current services and pricing.
+    </p>
+  </div>
+  <PlanFinder client:load />
+  <div class="plan-grid">
+    {plans.map((plan) => {
+      const image = planImages[plan.image];
+      return (
+        <Card className={`plan-card ${plan.color}`} data-plan={plan.image}>
+          <Badge className="recommended-badge" data-plan-badge hidden>Matches your preference</Badge>
+          <h3>{plan.name}</h3>
+          <p class="plan-description">{plan.text}</p>
+          <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
+          <div class="plan-price">
+            <strong>{plan.price}</strong>
+            <span>/ monthly (billed annually)</span>
+          </div>
+          <ActionLink href="#contact" data-booking data-booking-service="preventive" data-booking-plan={plan.name}>Ask about this plan</ActionLink>
+          <div class="plan-benefits">
+            <h4>{plan.label}</h4>
+            <ul class="check-list">
+              {plan.features.map((text) => (
+                <li><span class="check-icon" aria-hidden="true">✓</span><span>{text}</span></li>
+              ))}
+            </ul>
+          </div>
+        </Card>
+      );
+    })}
+  </div>
+</section>
