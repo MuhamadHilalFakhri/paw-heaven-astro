@@ -7,7 +7,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import ActionLink from "./ActionLink";
 import { isSectionClick, scrollToSection } from "./section-navigation";
 
-export default function HeaderNav({ logo }: { logo: { src: string; width: number; height: number } }) {
+export default function HeaderNav() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
   const pendingSection = useRef<string | null>(null);
@@ -46,7 +46,7 @@ export default function HeaderNav({ logo }: { logo: { src: string; width: number
     return () => { viewport.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); wide.removeEventListener("change", onWide); window.removeEventListener("popstate", onHistory); cancelAnimationFrame(frame); };
   }, []);
   return <>
-    <a href="#top" className="paw-brand" onClick={event => navigate(event, "#top")}><img {...logo} alt="" /><span>PAW HEAVEN</span></a>
+    <a href="#top" className="paw-brand" onClick={event => navigate(event, "#top")}><img src="/pawcare-mark.svg" width="48" height="48" alt="" /><span>PawCare+</span></a>
     <nav aria-label="Main navigation" className="desktop-nav">
       {navigationLinks.map(link => <Button key={link.href} asChild variant="ghost" className={active === link.href ? "active" : ""}><a href={link.href} onClick={event => navigate(event, link.href)} aria-current={active === link.href ? "location" : undefined}>{link.label}</a></Button>)}
     </nav>
@@ -61,7 +61,7 @@ export default function HeaderNav({ logo }: { logo: { src: string; width: number
         menuTrigger.current?.focus({ preventScroll: true });
         setActive(href); scrollToSection(href);
       }}>
-        <SheetHeader><SheetTitle>Explore Paw Heaven</SheetTitle><SheetDescription>Thoughtful care for your companion.</SheetDescription></SheetHeader>
+        <SheetHeader><SheetTitle>Explore PawCare+</SheetTitle><SheetDescription>Thoughtful care for your companion.</SheetDescription></SheetHeader>
         <ScrollArea className="sheet-scroll">
           <nav aria-label="Mobile navigation" className="sheet-navigation">
             {navigationLinks.map(link => <Button key={link.href} asChild variant="ghost" className={active === link.href ? "active" : ""}><a href={link.href} onClick={event => navigate(event, link.href, true)} aria-current={active === link.href ? "location" : undefined}>{link.label}</a></Button>)}

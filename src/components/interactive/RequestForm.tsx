@@ -29,7 +29,7 @@ export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" 
     if (newsletter && !consent) next.consent = "Please confirm you would like to receive the newsletter.";
     setErrors(next);
     if (Object.keys(next).length) { document.getElementById(`${kind}-${Object.keys(next)[0]}`)?.focus(); return; }
-    setSummary(newsletter ? `Please add ${values.email} to the Paw Heaven newsletter.\nI consent to receiving news, updates, and special offers by email.` : `Feedback from ${values.name.trim()}\n\n${values.review.trim()}\n\nPermission to publish with first name: ${consent ? "Yes" : "No"}`);
+    setSummary(newsletter ? `Please add ${values.email} to the PawCare+ newsletter.\nI consent to receiving news, updates, and special offers by email.` : `Feedback from ${values.name.trim()}\n\n${values.review.trim()}\n\nPermission to publish with first name: ${consent ? "Yes" : "No"}`);
     setStatus("Your draft is ready. Send it in your email app to share it with the team.");
     window.setTimeout(() => ScrollTrigger.refresh(), 0);
   };

@@ -117,8 +117,8 @@ export const adoptionReasons = [
 
 export const questions = [
   {
-    question: "What services does Paw Heaven offer?",
-    answer: "Paw Heaven offers grooming, veterinary care, home visits, boarding, care plans, and adoption support.",
+    question: "What services does PawCare+ offer?",
+    answer: "PawCare+ offers grooming, veterinary care, home visits, boarding, care plans, and adoption support.",
   },
   {
     question: "Do I need to schedule an appointment in advance?",

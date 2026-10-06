@@ -1,6 +1,6 @@
-# Paw Heaven
+# PawCare+
 
-Paw Heaven is a single-page Astro landing site. Astro components render the content, React islands handle interactions, and shadcn/ui provides the shared controls. Copy lives in `src/data/site-content.ts`.
+PawCare+ is a single-page Astro landing site. Astro components render the content, React islands handle interactions, and shadcn/ui provides the shared controls. Copy lives in `src/data/site-content.ts`.
 
 ## Development
 
@@ -53,7 +53,7 @@ Doctor profiles are outside the current scope.
 
 Reusable shadcn/ui primitives live in `src/components/ui`; product interactions
 live in `src/components/interactive`. `components.json` configures the official
-CLI. Shared styling uses Tailwind CSS 4 and the existing Paw Heaven design tokens.
+CLI. Shared styling uses Tailwind CSS 4 and the existing PawCare+ design tokens.
 The page uses Select, ScrollArea, Dialog, Sheet, Accordion, Calendar, Popover,
 Button, Input, Textarea, Label, Checkbox, Table, Card, Badge, ToggleGroup, and
 Carousel. Calendar and Carousel are split into smaller files to keep the 200-line

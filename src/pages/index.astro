@@ -7,7 +7,6 @@ import PlansSection from "../components/PlansSection.astro";
 import ServicesSection from "../components/ServicesSection.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import HeaderNav from "../components/interactive/HeaderNav";
-import logo from "../assets/clear/logo.webp";
 import TrustBand from "../components/TrustBand.astro";
 import VaccineSection from "../components/VaccineSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -22,7 +21,7 @@ import CommunitySection from "../components/CommunitySection.astro";
   <PageScrollArea client:load>
   <main id="top" class="site-shell">
     <div class="page-frame">
-      <header class="paw-header"><HeaderNav logo={{ src: logo.src, width: logo.width, height: logo.height }} client:load /></header>
+      <header class="paw-header"><HeaderNav client:load /></header>
       <div class="hero-wash">
         <HeroSection />
       </div>
