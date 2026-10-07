@@ -14,7 +14,7 @@ export const interactive = {
   reviewLabel: "Pengalaman pengunjung", previousSlide: "Slide sebelumnya", nextSlide: "Slide berikutnya",
   demoLabel: "Demo", demoSuccessTitle: "Simulasi selesai", demoSuccess: "Tidak ada data yang dikirim atau disimpan. Contoh ini hanya tampil di preview.",
   petCompanionLabel: "Teman hewan PawCare", petSettings: "Kontrol hewan",
-  petChoose: "Pilih hewan", petCat: "Milo si kucing", petDog: "Coco si anjing",
+  petChoose: "Pilih hewan", petCat: "Milo", petDog: "Coco",
   petPause: "Jeda jalan", petResume: "Lanjutkan jalan", petReduced: "Jalan otomatis mati karena pengaturan gerak minim.",
   petToy: "Lempar mainan", petTreat: "Beri camilan", petHide: "Sembunyikan hewan", petSize: "Ukuran hewan",
   petSmall: "Kecilkan", petLarge: "Besarkan", petShow: "Tampilkan teman hewan",

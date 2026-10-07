@@ -14,7 +14,7 @@ export const interactive = {
   reviewLabel: "Client experiences", previousSlide: "Previous slide", nextSlide: "Next slide",
   demoLabel: "Demo", demoSuccessTitle: "Demo complete", demoSuccess: "Nothing was sent or saved. This sample stays in the current preview.",
   petCompanionLabel: "PawCare pet companion", petSettings: "Pet controls",
-  petChoose: "Choose a pet", petCat: "Milo the cat", petDog: "Coco the dog",
+  petChoose: "Choose a pet", petCat: "Milo", petDog: "Coco",
   petPause: "Pause walking", petResume: "Resume walking", petReduced: "Auto-walk is off for reduced motion.",
   petToy: "Toss a toy", petTreat: "Give a treat", petHide: "Hide pet", petSize: "Pet size",
   petSmall: "Make smaller", petLarge: "Make larger", petShow: "Show pet companion",
