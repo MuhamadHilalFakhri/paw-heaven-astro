@@ -78,7 +78,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
   return <Popover open={open} onOpenChange={setPanelOpen}>
     <div ref={motion.ref} className={`pet-companion${compact ? " is-compact" : ""}`} data-facing="right" data-panel-open={open} role="group" aria-label={t.petCompanionLabel}>
       {message && <span className="pet-companion__bubble" role="status" aria-live="polite">{message}</span>}
-      {reaction && <span className="pet-companion__toss" data-kind={reaction} aria-hidden="true">{reaction === "toy" ? "🧶" : "🦴"}</span>}
+      {reaction && <span className="pet-companion__toss" data-kind={reaction} aria-hidden="true">{reaction === "toy" ? "🧶" : species === "cat" ? "🐟" : "🦴"}</span>}
       <PopoverTrigger asChild><button type="button" className="pet-companion__avatar" aria-label={`${t.petSettings}: ${petName}`}
         aria-haspopup="dialog" aria-expanded={open} onClick={onPetClick} onKeyDown={onKeyDown} onPointerDown={motion.onPointerDown}
         onPointerMove={motion.onPointerMove} onPointerUp={motion.onPointerUp} onPointerCancel={motion.onPointerUp}>

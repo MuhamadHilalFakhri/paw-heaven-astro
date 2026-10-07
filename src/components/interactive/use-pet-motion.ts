@@ -12,7 +12,7 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
   const [reduced, setReduced] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [moving, setMoving] = useState(false);
-  const clamp = useCallback((x: number) => Math.max(EDGE, Math.min(x, window.innerWidth - (ref.current?.offsetWidth ?? 112) - EDGE)), []);
+  const clamp = useCallback((x: number) => Math.max(EDGE, Math.min(x, window.innerWidth - (ref.current?.offsetWidth ?? 96) - EDGE)), []);
   const write = useCallback((x: number) => {
     const node = ref.current;
     if (!node) return;
