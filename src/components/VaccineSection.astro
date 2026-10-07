@@ -1,6 +1,12 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import vaccineImage from "../assets/clear/vaccine-checkup.webp";
 import ActionLink from "./interactive/ActionLink";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section class="vaccine-section" aria-labelledby="vaccine-title">
@@ -9,14 +15,14 @@ import ActionLink from "./interactive/ActionLink";
       src={vaccineImage.src}
       width={vaccineImage.width}
       height={vaccineImage.height}
-      alt="A male veterinarian examining a gray-and-white tabby cat with a stethoscope"
+      alt={t.vaccineAlt}
       loading="lazy"
       decoding="async"
     />
     <div class="vaccine-copy">
-      <h2 id="vaccine-title">Start healthy with<br />a first examination</h2>
-      <p>Ask our team about the complimentary initial examination mentioned in our current offer.</p>
-      <ActionLink href="#contact" data-booking data-booking-service="checkup" data-booking-context="Initial examination offer enquiry">Ask about the offer</ActionLink>
+      <h2 id="vaccine-title">{t.vaccineTitle[0]}<br />{t.vaccineTitle[1]}</h2>
+      <p>{t.vaccineText}</p>
+      <ActionLink href="#contact" data-booking data-booking-service="checkup" data-booking-context={t.vaccineContext}>{t.askOffer}</ActionLink>
     </div>
   </div>
 </section>
