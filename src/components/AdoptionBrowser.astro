@@ -1,16 +1,22 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import { adoptablePets } from "../data/community-content";
 import AdoptionProfiles from "./interactive/AdoptionProfiles";
 import catShowcase from "../assets/clear/adoption-cats-showcase.webp";
 import dogShowcase from "../assets/clear/adoption-dogs-showcase.webp";
 const pets = adoptablePets.filter(pet => pet.status !== 'Adopted');
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section id="adoptable-pets" class="community-section adoption-browser" aria-labelledby="adoption-browser-title">
   <div class="section-heading">
-    <p class="eyebrow">A companion, a new beginning</p>
-    <h2 id="adoption-browser-title">Find your next companion</h2>
-    <p>Explore a match for your home and ask our team about current availability.</p>
+    <p class="eyebrow">{t.adoptionEyebrow}</p>
+    <h2 id="adoption-browser-title">{t.adoptionBrowserTitle}</h2>
+    <p>{t.adoptionBrowserText}</p>
   </div>
-  <AdoptionProfiles pets={pets} showcaseImages={{ cat: catShowcase.src, dog: dogShowcase.src }} client:load />
+  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ cat: catShowcase.src, dog: dogShowcase.src }} client:load />
 </section>

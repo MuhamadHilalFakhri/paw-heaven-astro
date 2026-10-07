@@ -1,7 +1,14 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import adoptionImage from "../assets/clear/adoption-three-cats.webp";
-import { adoptionReasons } from "../data/site-content";
+import { getSiteContent } from "../data/site-content";
 import ActionLink from "./interactive/ActionLink";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+const { adoptionReasons } = getSiteContent(locale);
+
 ---
 
 <section id="about" class="adoption-section">
@@ -9,25 +16,25 @@ import ActionLink from "./interactive/ActionLink";
     src={adoptionImage.src}
     width={adoptionImage.width}
     height={adoptionImage.height}
-    alt="A man with three cats beside an adopt-me box"
+    alt={t.adoptionAlt}
     loading="lazy"
     decoding="async"
   />
   <div>
-    <h2>A new beginning starts<br />with a forever home</h2>
+    <h2>{t.adoptionTitle[0]}<br />{t.adoptionTitle[1]}</h2>
     <p>
-      Adoption can bring a new companion into your family. Our team can help you learn about available pets and the care they need.
+      {t.adoptionText}
     </p>
-    <h3>Why Choose Adoption with Us?</h3>
+    <h3>{t.adoptionWhy}</h3>
     <ul class="check-list">
       {adoptionReasons.map((text) => (
         <li><span class="check-icon" aria-hidden="true">✓</span><span>{text}</span></li>
       ))}
     </ul>
     <div class="adoption-actions">
-      <ActionLink href="#contact" data-booking data-booking-service="adoption">Book Appointment</ActionLink>
+      <ActionLink href="#contact" data-booking data-booking-service="adoption">{t.book}</ActionLink>
       <ActionLink href="#adoptable-pets" className="paw-button secondary-action">
-        Ask about adoption
+        {t.askAdoption}
       </ActionLink>
     </div>
   </div>
