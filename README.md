@@ -29,7 +29,7 @@ English is the default at `/`. Indonesian is available at `/id/`.
 The shadcn Select in the header switches routes while preserving the section hash
 and query string. Refreshing keeps the selected language through its URL.
 Translations cover sections, navigation, dialogs, validation, calendar labels,
-plan comparisons, and email summaries. Both routes render localized HTML before
+plan comparisons, and demo summaries. Both routes render localized HTML before
 hydration, with the corresponding document language and alternate language links.
 Add matching keys to both locale dictionaries; TypeScript checks the message shapes.
 Pet species, service, and time values remain stable across languages.
@@ -48,16 +48,14 @@ uses shorter reveals. Layout and readable mobile text overrides are in
 
 The header stays visible throughout the landing page on desktop and mobile.
 Shadcn dialogs provide service details and a four-step appointment request.
-Booking, feedback, and newsletter requests prepare an email draft or copyable
-summary; they do not send emails, reserve slots, or automatically subscribe anyone.
-Confirm requests with the clinic. Connect a booking service before advertising live
-availability or automated confirmation. Personal form data stays in the current page.
+Clinic details, prices, adoption profiles, and reviews are labeled demo data.
+Location and contact examples use Indonesia. Booking, adoption, feedback, and
+newsletter flows end with an in-page confirmation; form data is not sent or saved.
 
 The plan finder highlights existing plan benefits and provides a comparison table.
-`src/data/community-content.ts` holds clinic photos, adoption profiles, and client
-reviews. Arrays are intentionally empty until real content is supplied; only reviews
-with publication permission are displayed. Add real photo assets under public/images.
-The site shows an adoption enquiry and feedback form when those records are absent.
+`src/data/community-content.ts` accepts clinic photos, actual adoption profiles, and
+client reviews with publication permission. Until then, localized sample profiles and
+a demo review show the intended layouts. Add clinic images under public/images.
 Doctor profiles are outside the current scope.
 
 ## UI components

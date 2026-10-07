@@ -1,5 +1,6 @@
 ---
 import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import AdoptionSection from "../components/AdoptionSection.astro";
 import FaqSection from "../components/FaqSection.astro";
 import HeroSection from "../components/HeroSection.astro";
@@ -25,6 +26,7 @@ const { locale } = Astro.props;
   <main id="top" class="site-shell">
     <div class="page-frame">
       <header class="paw-header"><HeaderNav locale={locale} client:load /></header>
+      <aside class="prototype-notice" role="note">{getMessages(locale).page.prototypeNotice}</aside>
       <div class="hero-wash">
         <HeroSection locale={locale} />
       </div>

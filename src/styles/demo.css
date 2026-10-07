@@ -1,0 +1,60 @@
+.prototype-notice {
+  padding: 9px 18px;
+  background: var(--services-tint);
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.demo-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: 8px 0;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--hero-tint);
+  color: var(--foreground);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.demo-review {
+  margin: 16px 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--feature-pink);
+}
+
+.demo-review blockquote { margin: 0; }
+.demo-review figcaption { font-size: 14px; font-weight: 700; }
+.demo-pet-card > img { object-fit: contain; background: var(--feature-rose); }
+.demo-pet-card dl { grid-template-columns: auto minmax(0, 1fr); }
+.demo-pet-card dd { overflow-wrap: anywhere; }
+
+.demo-confirmation {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--trust-tint);
+}
+
+.demo-confirmation h3,
+.demo-confirmation h4 { margin: 0; }
+.demo-confirmation .request-summary { max-height: 220px; }
+.demo-confirmation .paw-button { justify-self: start; }
+
+:where(a, button, [role="combobox"], [role="radio"], input, textarea, summary):focus-visible {
+  outline: 3px solid var(--doodle);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .prototype-notice { padding: 8px 12px; font-size: 10px; }
+  .demo-confirmation { padding: 16px; }
+}

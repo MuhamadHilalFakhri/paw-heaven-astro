@@ -7,6 +7,7 @@ import ReviewCarousel from "./interactive/ReviewCarousel";
 import ActionLink from "./interactive/ActionLink";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 const reviews = clientReviews.filter(review => review.permissionConfirmed);
 interface Props extends LocaleProps {}
 const { locale } = Astro.props;
@@ -23,7 +24,9 @@ const { page: t } = getMessages(locale);
   <div class="community-grid">
     <Card className="community-card">
       <h3>{t.firstVisit}</h3>
-      <p>9235 Bayberry Drive<br />Hendersonville, NC 28792</p>
+      <Badge className="demo-badge">{t.demoLabel}</Badge>
+      <p>{t.addressLines[0]}<br />{t.addressLines[1]}</p>
+      <p>{t.clinicHours}</p>
       <p>{t.firstVisitText}</p>
       {clinicPhotos.length > 0 && (
         <div class="clinic-gallery">
@@ -40,7 +43,7 @@ const { page: t } = getMessages(locale);
       <h3>{t.stories}</h3>
       {reviews.length > 0 ? (
         <ReviewCarousel locale={locale} reviews={reviews} client:load />
-      ) : <p>{t.storiesText}</p>}
+      ) : <figure class="demo-review"><Badge className="demo-badge">{t.demoLabel}</Badge><blockquote><p>“{t.sampleReviewQuote}”</p></blockquote><figcaption>{t.sampleReviewName}</figcaption></figure>}
       <RequestForm locale={locale} kind="feedback" client:load />
     </Card>
   </div>
