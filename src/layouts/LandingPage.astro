@@ -17,6 +17,7 @@ import PageScrollArea from "../components/interactive/PageScrollArea";
 import MobileBookingBar from "../components/MobileBookingBar.astro";
 import AdoptionBrowser from "../components/AdoptionBrowser.astro";
 import CommunitySection from "../components/CommunitySection.astro";
+import PetCompanion from "../components/interactive/PetCompanion";
 interface Props extends LocaleProps {}
 const { locale } = Astro.props;
 ---
@@ -43,6 +44,7 @@ const { locale } = Astro.props;
     </div>
   </main>
   </PageScrollArea>
+  <PetCompanion locale={locale} client:load />
   <InteractionDialogs locale={locale} client:load />
   <MobileBookingBar locale={locale} />
 </BaseLayout>
