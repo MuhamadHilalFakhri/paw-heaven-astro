@@ -49,6 +49,7 @@
 .pet-companion__art[data-pose="walk"] { animation: pet-walk-frames 0.84s steps(1, end) infinite, pet-walk-bob 0.84s cubic-bezier(.37, 0, .63, 1) infinite; }
 .pet-companion__art[data-pose="play"] { background-position: 100% 100%; animation: pet-play 0.76s ease-in-out infinite alternate; }
 .pet-companion__art[data-pose="treat"] { background-position: 0 0; animation: none; }
+.pet-companion[data-panel-open="true"] .pet-companion__art { background-position: 0 0; animation: none; }
 .pet-companion[data-facing="left"] .pet-companion__art[data-pose="play"] { transform: scaleX(-1); }
 .pet-companion__name {
   position: absolute;

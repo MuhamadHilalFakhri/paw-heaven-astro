@@ -22,10 +22,10 @@ export default function PetCompanion({ locale }: LocaleProps) {
   const [open, setOpen] = useState(false);
   const [reaction, setReaction] = useState<Reaction>(null);
   const timeout = useRef<number | undefined>(undefined);
-  const motion = usePetMotion(walking, compact, hidden || busy || mobileMode || open || reaction === "treat");
+  const motion = usePetMotion(walking, compact, hidden || busy || mobileMode || open || reaction !== null);
   const petName = species === "cat" ? "Milo" : "Coco";
   const sprite = species === "cat" ? miloSheet.src : cocoSheet.src;
-  const pose = reaction === "toy" ? "play" : reaction === "treat" ? "treat" : motion.dragging || motion.moving ? "walk" : "idle";
+  const pose = open ? "idle" : reaction === "toy" ? "play" : reaction === "treat" ? "treat" : motion.dragging || motion.moving ? "walk" : "idle";
   const autoIsRunning = walking && !motion.reduced;
 
   useEffect(() => {
@@ -55,7 +55,12 @@ export default function PetCompanion({ locale }: LocaleProps) {
   useEffect(() => { if (mobileMode) setOpen(false); }, [mobileMode]);
 
   useEffect(() => () => window.clearTimeout(timeout.current), []);
+  const setPanelOpen = (next: boolean) => {
+    if (next) { window.clearTimeout(timeout.current); setReaction(null); }
+    setOpen(next);
+  };
   const react = (next: Exclude<Reaction, null>) => {
+    setOpen(false);
     setReaction(next);
     window.clearTimeout(timeout.current);
     timeout.current = window.setTimeout(() => setReaction(null), 1500);
@@ -70,8 +75,8 @@ export default function PetCompanion({ locale }: LocaleProps) {
 
   if (hidden || busy || mobileMode) return hidden && !busy && !mobileMode ? <button type="button" className="pet-companion-restore" onClick={() => setHidden(false)} aria-label={t.petShow}><PawPrint aria-hidden="true" /></button> : null;
 
-  return <Popover open={open} onOpenChange={setOpen}>
-    <div ref={motion.ref} className={`pet-companion${compact ? " is-compact" : ""}`} data-facing="right" role="group" aria-label={t.petCompanionLabel}>
+  return <Popover open={open} onOpenChange={setPanelOpen}>
+    <div ref={motion.ref} className={`pet-companion${compact ? " is-compact" : ""}`} data-facing="right" data-panel-open={open} role="group" aria-label={t.petCompanionLabel}>
       {message && <span className="pet-companion__bubble" role="status" aria-live="polite">{message}</span>}
       {reaction && <span className="pet-companion__toss" data-kind={reaction} aria-hidden="true">{reaction === "toy" ? "🧶" : "🦴"}</span>}
       <PopoverTrigger asChild><button type="button" className="pet-companion__avatar" aria-label={`${t.petSettings}: ${petName}`}
@@ -80,7 +85,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
         <span className="pet-companion__art" data-pose={pose} style={{ backgroundImage: `url("${sprite}")` }} />
         <span className="pet-companion__name">{petName}</span>
       </button></PopoverTrigger>
-      <PopoverContent side="top" align="center" sideOffset={10} collisionPadding={12} className="pet-companion__panel">
+      <PopoverContent side="top" align="center" sideOffset={18} collisionPadding={12} className="pet-companion__panel">
         <p className="pet-companion__heading">{t.petChoose}</p>
         <div className="pet-companion__choices" role="group" aria-label={t.petChoose}>
           <Button type="button" size="sm" variant={species === "cat" ? "default" : "outline"} aria-pressed={species === "cat"} onClick={() => setSpecies("cat")}><Cat aria-hidden="true" />{t.petCat}</Button>
