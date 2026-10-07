@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { LocaleProps } from "../../i18n/config";
 import { getMessages, formatMessage } from "../../i18n/messages";
 import { getSiteContent } from "../../data/site-content";
+import { formatPrice } from "../../i18n/config";
 import ChoiceSelect from "./ChoiceSelect";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../ui/accordion";
 import { ScrollArea } from "../ui/scroll-area";
@@ -13,7 +14,7 @@ export default function PlanFinder({ locale }: LocaleProps) {
   const { plans } = getSiteContent(locale);
   const options = ["all", "starter", "wellness", "club"].map(value => ({ value, label: t[value as "all" | "starter" | "wellness" | "club"] }));
   const rows = [
-    { label: t.rows[0], values: plans.map(plan => plan.price) },
+    { label: t.rows[0], values: plans.map(plan => formatPrice(plan.price, locale)) },
     { label: t.rows[1], values: [t.included, t.included, t.included] },
     { label: t.rows[2], values: [t.included, t.included, t.included] },
     { label: t.rows[3], values: ["—", t.included, t.included] },

@@ -65,7 +65,7 @@ export const plans = [
     image: "starter",
     name: "Pet Care Starter Pack",
     text: "A great choice for pets who need simple, essential care.",
-    price: "$10",
+    price: 150000,
     color: "plan-neutral",
     label: "What’s in the Plan:",
     features: [
@@ -80,7 +80,7 @@ export const plans = [
     image: "wellness",
     name: "Pet Wellness Pack",
     text: "A monthly care plan designed to keep your pet healthy and comfortable.",
-    price: "$45",
+    price: 450000,
     color: "plan-highlight",
     label: "Everything in the Starter Bundle, plus:",
     features: [
@@ -95,7 +95,7 @@ export const plans = [
     image: "club",
     name: "Tail-Waggers Club",
     text: "Care, grooming, and convenience for pets who deserve the best.",
-    price: "$60",
+    price: 600000,
     color: "plan-neutral",
     label: "Everything in Wellness Bundle:",
     features: [

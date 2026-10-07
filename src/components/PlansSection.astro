@@ -10,6 +10,7 @@ import PlanFinder from "./interactive/PlanFinder";
 import ActionLink from "./interactive/ActionLink";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { formatPrice } from "../i18n/config";
 
 const planImages: Record<string, ImageMetadata> = {
   starter: starterImage,
@@ -38,11 +39,12 @@ const { plans } = getSiteContent(locale);
       return (
         <Card className={`plan-card ${plan.color}`} data-plan={plan.image}>
           <Badge className="recommended-badge" data-plan-badge hidden>{t.recommended}</Badge>
+          <Badge className="demo-badge">{t.demoLabel}</Badge>
           <h3>{plan.name}</h3>
           <p class="plan-description">{plan.text}</p>
           <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
           <div class="plan-price">
-            <strong>{plan.price}</strong>
+            <strong>{formatPrice(plan.price, locale)}</strong>
             <span>{t.monthly}</span>
           </div>
           <ActionLink href="#contact" data-booking data-booking-service="preventive" data-booking-plan={plan.name}>{t.askPlan}</ActionLink>

@@ -25,19 +25,19 @@ export const plans = [
   {
     image: "starter", name: "Paket Perawatan Dasar",
     text: "Pilihan untuk hewan yang membutuhkan perawatan dasar sehari-hari.",
-    price: "$10", color: "plan-neutral", label: "Manfaat dalam paket:",
+    price: 150000, color: "plan-neutral", label: "Manfaat dalam paket:",
     features: ["2x Mandi, Sisir & Pengeringan", "Potong Kuku & Balsem Telapak", "Pembersihan & Pemeriksaan Telinga", "Hadiah Gratis (Camilan + Mainan)", "Prioritas Pembuatan Janji"],
   },
   {
     image: "wellness", name: "Paket Kesehatan Hewan",
     text: "Paket perawatan bulanan agar hewan kesayangan tetap sehat dan nyaman.",
-    price: "$45", color: "plan-highlight", label: "Semua manfaat Paket Dasar, ditambah:",
+    price: 450000, color: "plan-highlight", label: "Semua manfaat Paket Dasar, ditambah:",
     features: ["Grooming Lengkap (Potong + Penataan)", "Sikat Gigi & Semprotan Penyegar Napas", "Perawatan Kulit & Bulu", "Pemeriksaan Kesehatan oleh Spesialis", "Vaksinasi Inti Gratis (Anggota Baru)"],
   },
   {
     image: "club", name: "Klub Sahabat Ceria",
     text: "Perawatan, grooming, dan kemudahan untuk sahabat kesayangan Anda.",
-    price: "$60", color: "plan-neutral", label: "Semua manfaat Paket Kesehatan:",
+    price: 600000, color: "plan-neutral", label: "Semua manfaat Paket Kesehatan:",
     features: ["2x Sesi Grooming Lengkap", "Perawatan Kuku & Telinga Tanpa Batas", "Pengurangan Bulu Rontok atau Penataan", "Kotak Hadiah Bulanan", "Grooming Ulang Tahun Gratis / Puppuccino"],
   },
 ];
