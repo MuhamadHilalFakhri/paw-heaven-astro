@@ -11,6 +11,7 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
   const suppressClick = useRef(false);
   const [reduced, setReduced] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [moving, setMoving] = useState(false);
   const clamp = useCallback((x: number) => Math.max(EDGE, Math.min(x, window.innerWidth - (ref.current?.offsetWidth ?? 112) - EDGE)), []);
   const write = useCallback((x: number) => {
     const node = ref.current;
@@ -35,15 +36,38 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
     const proxy = { x: clamp(position.current.x) };
     write(proxy.x);
     let tween: gsap.core.Tween | undefined;
+    let pause: gsap.core.Tween | undefined;
+    const active = enabled && !reduced && !dragging && !suspended;
     const walk = () => {
       const right = Math.max(EDGE, window.innerWidth - node.offsetWidth - EDGE);
-      const target = proxy.x < right / 2 ? right : EDGE;
-      tween = gsap.to(proxy, { x: target, duration: Math.max(16, right / 13), ease: "none", onUpdate: () => write(proxy.x), onComplete: walk });
+      const span = Math.max(1, right - EDGE);
+      const goingRight = proxy.x < right / 2;
+      const progress = goingRight ? 0.7 + Math.random() * 0.28 : Math.random() * 0.28;
+      const target = EDGE + span * progress;
+      const distance = Math.abs(target - proxy.x);
+      setMoving(true);
+      tween = gsap.to(proxy, {
+        x: target,
+        duration: Math.max(2.8, distance / (32 + Math.random() * 8)),
+        ease: "power1.inOut",
+        onUpdate: () => write(proxy.x),
+        onComplete: () => {
+          setMoving(false);
+          pause = gsap.delayedCall(1.1 + Math.random() * 1.7, walk);
+        },
+      });
     };
-    if (enabled && !reduced && !dragging && !suspended) walk();
-    const resize = () => { tween?.kill(); proxy.x = clamp(position.current.x); write(proxy.x); if (enabled && !reduced && !dragging && !suspended) walk(); };
+    const resize = () => {
+      tween?.kill();
+      pause?.kill();
+      proxy.x = clamp(position.current.x);
+      write(proxy.x);
+      if (active) pause = gsap.delayedCall(0.35, walk);
+    };
+    setMoving(false);
+    if (active) pause = gsap.delayedCall(0.35, walk);
     window.addEventListener("resize", resize);
-    return () => { tween?.kill(); window.removeEventListener("resize", resize); };
+    return () => { tween?.kill(); pause?.kill(); window.removeEventListener("resize", resize); };
   }, [enabled, reduced, dragging, compact, suspended, clamp, write]);
 
   const onPointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
@@ -68,5 +92,5 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
   }, []);
   const moveBy = useCallback((delta: number) => write(position.current.x + delta), [write]);
   const consumeClick = useCallback(() => { const dragged = suppressClick.current; suppressClick.current = false; return dragged; }, []);
-  return { ref, reduced, dragging, onPointerDown, onPointerMove, onPointerUp, moveBy, consumeClick };
+  return { ref, reduced, dragging, moving, onPointerDown, onPointerMove, onPointerUp, moveBy, consumeClick };
 }

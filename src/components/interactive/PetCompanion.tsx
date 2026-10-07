@@ -24,7 +24,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
   const motion = usePetMotion(walking, compact, hidden || busy);
   const petName = species === "cat" ? "Milo" : "Coco";
   const sprite = species === "cat" ? miloSheet.src : cocoSheet.src;
-  const pose = reaction === "toy" ? "play" : reaction === "treat" ? "happy" : motion.dragging || (walking && !motion.reduced) ? "walk" : "idle";
+  const pose = reaction === "toy" ? "play" : reaction === "treat" ? "happy" : motion.dragging || motion.moving ? "walk" : "idle";
   const autoIsRunning = walking && !motion.reduced;
 
   useEffect(() => {
