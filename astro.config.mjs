@@ -4,6 +4,11 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   output: "static",
+  i18n: {
+    defaultLocale: "id",
+    locales: ["id", "en"],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
 });

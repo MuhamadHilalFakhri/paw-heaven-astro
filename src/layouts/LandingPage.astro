@@ -1,0 +1,46 @@
+---
+import type { LocaleProps } from "../i18n/config";
+import AdoptionSection from "../components/AdoptionSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import HeroSection from "../components/HeroSection.astro";
+import IntroductionSection from "../components/IntroductionSection.astro";
+import PlansSection from "../components/PlansSection.astro";
+import ServicesSection from "../components/ServicesSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import HeaderNav from "../components/interactive/HeaderNav";
+import TrustBand from "../components/TrustBand.astro";
+import VaccineSection from "../components/VaccineSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InteractionDialogs from "../components/interactive/InteractionDialogs";
+import PageScrollArea from "../components/interactive/PageScrollArea";
+import MobileBookingBar from "../components/MobileBookingBar.astro";
+import AdoptionBrowser from "../components/AdoptionBrowser.astro";
+import CommunitySection from "../components/CommunitySection.astro";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+---
+
+<BaseLayout locale={locale}>
+  <PageScrollArea client:load>
+  <main id="top" class="site-shell">
+    <div class="page-frame">
+      <header class="paw-header"><HeaderNav locale={locale} client:load /></header>
+      <div class="hero-wash">
+        <HeroSection locale={locale} />
+      </div>
+      <IntroductionSection locale={locale} />
+      <TrustBand locale={locale} />
+      <ServicesSection locale={locale} />
+      <AdoptionSection locale={locale} />
+      <AdoptionBrowser locale={locale} />
+      <VaccineSection locale={locale} />
+      <PlansSection locale={locale} />
+      <CommunitySection locale={locale} />
+      <FaqSection locale={locale} />
+      <SiteFooter locale={locale} />
+    </div>
+  </main>
+  </PageScrollArea>
+  <InteractionDialogs locale={locale} client:load />
+  <MobileBookingBar locale={locale} />
+</BaseLayout>

@@ -1,19 +1,21 @@
 ---
 import "../styles.css";
+import type { LocaleProps } from "../i18n/config";
+import { localePath } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 
-interface Props {
+interface Props extends LocaleProps {
   title?: string;
   description?: string;
 }
 
-const {
-  title = "PawCare+ — Loved by Pets, Trusted by Owners",
-  description = "Explore grooming, veterinary care, home visits, boarding, and adoption support at PawCare+.",
-} = Astro.props;
+const { locale } = Astro.props;
+const { page } = getMessages(locale);
+const { title = page.title, description = page.description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -21,6 +23,11 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale === "id" ? "id_ID" : "en_US"} />
+    <meta property="og:locale:alternate" content={locale === "id" ? "en_US" : "id_ID"} />
+    <link rel="alternate" hreflang="id" href={localePath("id")} />
+    <link rel="alternate" hreflang="en" href={localePath("en")} />
+    <link rel="alternate" hreflang="x-default" href={localePath("id")} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <link rel="icon" href="/pawcare-mark.svg" type="image/svg+xml" />
