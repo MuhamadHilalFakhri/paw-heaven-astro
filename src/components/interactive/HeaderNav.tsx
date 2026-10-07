@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Menu } from "lucide-react";
-import { navigationLinks } from "../../data/site-content";
+import { getSiteContent } from "../../data/site-content";
+import type { LocaleProps } from "../../i18n/config";
+import { getMessages } from "../../i18n/messages";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "../ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "../ui/sheet";
 import { ScrollArea } from "../ui/scroll-area";
 import ActionLink from "./ActionLink";
 import { isSectionClick, scrollToSection } from "./section-navigation";
 
-export default function HeaderNav() {
+export default function HeaderNav({ locale }: LocaleProps) {
+  const { navigationLinks } = getSiteContent(locale);
+  const { page: t } = getMessages(locale);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
   const pendingSection = useRef<string | null>(null);
@@ -44,16 +49,17 @@ export default function HeaderNav() {
     window.addEventListener("popstate", onHistory);
     update();
     return () => { viewport.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); wide.removeEventListener("change", onWide); window.removeEventListener("popstate", onHistory); cancelAnimationFrame(frame); };
-  }, []);
+  }, [navigationLinks]);
   return <>
     <a href="#top" className="paw-brand" onClick={event => navigate(event, "#top")}><img src="/pawcare-mark.svg" width="48" height="48" alt="" /><span>PawCare+</span></a>
-    <nav aria-label="Main navigation" className="desktop-nav">
+    <nav aria-label={t.mainNav} className="desktop-nav">
       {navigationLinks.map(link => <Button key={link.href} asChild variant="ghost" className={active === link.href ? "active" : ""}><a href={link.href} onClick={event => navigate(event, link.href)} aria-current={active === link.href ? "location" : undefined}>{link.label}</a></Button>)}
     </nav>
-    <div className="header-book"><ActionLink href="#contact" data-booking>Book Appointment</ActionLink></div>
+    <div className="header-book"><ActionLink href="#contact" data-booking>{t.book}</ActionLink></div>
+    <LanguageSwitcher locale={locale} />
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild><Button ref={menuTrigger} variant="ghost" size="icon" className="mobile-toggle" aria-label="Open menu"><Menu /></Button></SheetTrigger>
-      <SheetContent className="paw-sheet" onCloseAutoFocus={event => {
+      <SheetTrigger asChild><Button ref={menuTrigger} variant="ghost" size="icon" className="mobile-toggle" aria-label={t.openMenu}><Menu /></Button></SheetTrigger>
+      <SheetContent className="paw-sheet" closeLabel={t.close} onCloseAutoFocus={event => {
         if (!pendingSection.current) return;
         event.preventDefault();
         const href = pendingSection.current;
@@ -61,15 +67,15 @@ export default function HeaderNav() {
         menuTrigger.current?.focus({ preventScroll: true });
         setActive(href); scrollToSection(href);
       }}>
-        <SheetHeader><SheetTitle>Explore PawCare+</SheetTitle><SheetDescription>Thoughtful care for your companion.</SheetDescription></SheetHeader>
+        <SheetHeader><SheetTitle>{t.explore}</SheetTitle><SheetDescription>{t.menuDescription}</SheetDescription></SheetHeader>
         <ScrollArea className="sheet-scroll">
-          <nav aria-label="Mobile navigation" className="sheet-navigation">
+          <nav aria-label={t.mobileNav} className="sheet-navigation">
             {navigationLinks.map(link => <Button key={link.href} asChild variant="ghost" className={active === link.href ? "active" : ""}><a href={link.href} onClick={event => navigate(event, link.href, true)} aria-current={active === link.href ? "location" : undefined}>{link.label}</a></Button>)}
           </nav>
           <Button className="paw-button" onClick={() => {
             setOpen(false);
             requestAnimationFrame(() => window.dispatchEvent(new CustomEvent("paw:booking", { detail: {} })));
-          }}>Book Appointment</Button>
+          }}>{t.book}</Button>
         </ScrollArea>
       </SheetContent>
     </Sheet>
