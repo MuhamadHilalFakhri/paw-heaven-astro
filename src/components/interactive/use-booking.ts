@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, motionDuration } from "../../scripts/motion";
 import { localDate, type BookingPreset, type BookingValues, type BookingErrors } from "./booking-model";
+import type { Locale } from "../../i18n/config";
+import { getMessages } from "../../i18n/messages";
 
-export function useBooking(preset: BookingPreset) {
+export function useBooking(preset: BookingPreset, locale: Locale) {
+  const { interactive: t } = getMessages(locale);
   const [values, setValues] = useState<BookingValues>({ pet: preset.pet || "", service: preset.service || "", date: "", time: "", name: "", email: "", phone: "", notes: "" });
   const [errors, setErrors] = useState<BookingErrors>({});
   const [step, setStep] = useState(0);
@@ -14,10 +17,10 @@ export function useBooking(preset: BookingPreset) {
   const validate = () => {
     const next: BookingErrors = {};
     const required = step === 0 ? ["pet", "service"] : step === 1 ? ["date", "time"] : ["name", "email"];
-    required.forEach(name => { if (!values[name as keyof BookingValues].trim()) next[name as keyof BookingValues] = "Please complete this field."; });
-    if (step === 1 && values.date && values.date < localDate()) next.date = "Please choose today or a future date.";
+    required.forEach(name => { if (!values[name as keyof BookingValues].trim()) next[name as keyof BookingValues] = t.required; });
+    if (step === 1 && values.date && values.date < localDate()) next.date = t.futureDate;
     const email = formRef.current?.querySelector<HTMLInputElement>("#booking-email");
-    if (step === 2 && email && !email.validity.valid) next.email = "Please enter a valid email address.";
+    if (step === 2 && email && !email.validity.valid) next.email = t.invalidEmail;
     setErrors(next);
     const first = Object.keys(next)[0];
     if (first) requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>(`#booking-${first}`)?.focus());

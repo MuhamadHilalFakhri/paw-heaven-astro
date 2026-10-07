@@ -1,9 +1,14 @@
+import { getMessages } from "../i18n/messages";
+
+const currentMessages = () => getMessages(document.documentElement.lang === "en" ? "en" : "id").interactive;
+
 export const validateField = (field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+  const t = currentMessages();
   const error = field.id ? document.getElementById(`${field.id}-error`) : null;
   const blank = field.required && !field.value.trim();
   const valid = !blank && field.checkValidity();
   field.setAttribute("aria-invalid", String(!valid));
-  if (error) error.textContent = valid ? "" : blank ? "Please complete this field." : field.validationMessage;
+  if (error) error.textContent = valid ? "" : !blank && field.validity.typeMismatch ? t.invalidEmail : t.required;
   return valid;
 };
 
@@ -29,10 +34,11 @@ export const emailDraft = (subject: string, body: string) =>
   `mailto:Pawheaven@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 export const copyRequest = async (text: string, status: HTMLElement) => {
+  const t = currentMessages();
   try {
     await navigator.clipboard.writeText(text);
-    status.textContent = "Copied. Paste the request into a message to the clinic.";
+    status.textContent = t.copied;
   } catch {
-    status.textContent = "Copy is unavailable here. Select the request text to copy it, or use the email draft.";
+    status.textContent = t.copyUnavailable;
   }
 };
