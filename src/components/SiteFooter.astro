@@ -29,8 +29,10 @@ const { navigationLinks } = getSiteContent(locale);
     </div>
     <div>
       <h3>{t.contact}</h3>
-      <span>{t.clinicEmail}</span>
-      <span>{t.clinicPhone}</span>
+      <div class="footer-contact-details">
+        <p>{t.clinicEmail}</p>
+        <p>{t.clinicPhone}</p>
+      </div>
       <h4>{t.address}</h4>
       <p>{t.addressLines[0]}<br />{t.addressLines[1]}</p>
       <p>{t.clinicHours}</p>

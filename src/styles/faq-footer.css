@@ -114,6 +114,12 @@
   margin-bottom: 8px;
 }
 
+.footer-contact-details {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
 .footer-grid form {
   display: flex;
   align-items: end;
