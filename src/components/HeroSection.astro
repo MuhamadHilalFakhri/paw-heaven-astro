@@ -1,7 +1,13 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import heroImage from "../assets/clear/hero-vet.webp";
 import teddyImage from "../assets/clear/teddy.webp";
 import ActionLink from "./interactive/ActionLink";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section class="paw-hero" aria-labelledby="hero-title">
@@ -9,8 +15,8 @@ import ActionLink from "./interactive/ActionLink";
   <span class="hero-mark mark-two" aria-hidden="true">⌁</span>
   <span class="hero-mark mark-three" aria-hidden="true">〰</span>
   <span class="hero-mark mark-four" aria-hidden="true">✦</span>
-  <h1 id="hero-title">Loved by Pets<br />Trusted by Owners</h1>
-  <p>From routine checkups to emergency care, we’re here for every wag, purr, and cuddle.</p>
+  <h1 id="hero-title">{t.heroTitle[0]}<br />{t.heroTitle[1]}</h1>
+  <p>{t.heroText}</p>
   <div class="hero-action">
     <img
       class="teddy-decoration"
@@ -19,14 +25,14 @@ import ActionLink from "./interactive/ActionLink";
       height={teddyImage.height}
       alt=""
     />
-    <ActionLink href="#contact" data-booking>Book Appointment</ActionLink>
+    <ActionLink href="#contact" data-booking>{t.book}</ActionLink>
   </div>
   <img
     class="hero-illustration"
     src={heroImage.src}
     width={heroImage.width}
     height={heroImage.height}
-    alt="Veterinarian and pet owners caring for a dog and cats together"
+    alt={t.heroAlt}
     fetchpriority="high"
     loading="eager"
     decoding="async"

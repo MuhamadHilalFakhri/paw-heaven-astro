@@ -1,4 +1,6 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import groomingImage from "../assets/clear/grooming.webp";
 import homeVisitImage from "../assets/clear/home-visit.webp";
 import introDogImage from "../assets/clear/intro-dog.webp";
@@ -6,7 +8,7 @@ import introFishImage from "../assets/clear/intro-fish.webp";
 import introVetImage from "../assets/clear/intro-vet.webp";
 import vetImage from "../assets/clear/vet.webp";
 import type { ImageMetadata } from "astro";
-import { features } from "../data/site-content";
+import { getSiteContent } from "../data/site-content";
 import { Card } from "./ui/card";
 
 const featureImages: Record<string, ImageMetadata> = {
@@ -14,18 +16,23 @@ const featureImages: Record<string, ImageMetadata> = {
   homeVisit: homeVisitImage,
   vet: vetImage,
 };
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+const { features } = getSiteContent(locale);
+
 ---
 
-<section class="intro-section" aria-label="About PawCare+">
+<section class="intro-section" aria-label={t.aboutLabel}>
   <h2 class="intro-heading">
     <span class="intro-line">
-      At PawCare+ <img class="intro-decoration" src={introVetImage.src} width={introVetImage.width} height={introVetImage.height} alt="" /> Your pets are more than animals;
+      {t.introBrand} <img class="intro-decoration" src={introVetImage.src} width={introVetImage.width} height={introVetImage.height} alt="" /> {t.introLines[0]}
     </span>{" "}
     <span class="intro-line">
-      they’re family. We provide loving, expert care <img class="intro-decoration" src={introFishImage.src} width={introFishImage.width} height={introFishImage.height} alt="" />
+      {t.introLines[1]} <img class="intro-decoration" src={introFishImage.src} width={introFishImage.width} height={introFishImage.height} alt="" />
     </span>{" "}
     <span class="intro-line">
-      that’s safe, simple, and stress-free. <img class="intro-decoration" src={introDogImage.src} width={introDogImage.width} height={introDogImage.height} alt="" />
+      {t.introLines[2]} <img class="intro-decoration" src={introDogImage.src} width={introDogImage.width} height={introDogImage.height} alt="" />
     </span>
   </h2>
   <div class="feature-grid">

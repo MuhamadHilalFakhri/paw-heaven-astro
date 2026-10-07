@@ -1,16 +1,22 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import trustCatImage from "../assets/clear/trust-cats-playing.webp";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section class="testimonial-band" aria-labelledby="trust-title">
   <span class="trust-leaf" aria-hidden="true">✿</span>
-  <h2 id="trust-title">Thoughtful care<br />for every companion</h2>
-  <p>From everyday grooming to veterinary visits, our team is here to make pet care easier.</p>
+  <h2 id="trust-title">{t.trustTitle[0]}<br />{t.trustTitle[1]}</h2>
+  <p>{t.trustText}</p>
   <img
     src={trustCatImage.src}
     width={trustCatImage.width}
     height={trustCatImage.height}
-    alt="Two cats playing together with a ball of yarn and a feather toy"
+    alt={t.trustAlt}
     loading="lazy"
     decoding="async"
   />
