@@ -15,8 +15,8 @@ export default function LanguageSwitcher({ locale }: LocaleProps) {
       <Languages aria-hidden="true" /><SelectValue>{locale.toUpperCase()}</SelectValue>
     </SelectTrigger>
     <SelectContent className="choice-content language-options" position="popper" align="end">
-      <SelectItem value="id"><span lang="id">Bahasa Indonesia</span></SelectItem>
       <SelectItem value="en"><span lang="en">English</span></SelectItem>
+      <SelectItem value="id"><span lang="id">Bahasa Indonesia</span></SelectItem>
     </SelectContent>
   </Select>;
 }
