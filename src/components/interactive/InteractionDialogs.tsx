@@ -63,7 +63,7 @@ export default function InteractionDialogs({ locale }: LocaleProps) {
             <ul className="detail-list">{serviceDetails[service.image].includes.map(text => <li key={text}>{text}</li>)}</ul>
             <div className="detail-note"><h3>{t.beforeVisit}</h3><p>{serviceDetails[service.image].preparation}</p></div>
             <p className="field-hint">{t.priceHint}</p>
-            <div className="dialog-actions">{service.image === "emergency" ? <ActionLink href="tel:+861815785051">{t.callClinic}</ActionLink> : <ActionLink href="#contact" data-booking data-booking-service={service.image}>{t.requestService}</ActionLink>}</div>
+            <div className="dialog-actions">{service.image === "emergency" ? <DialogClose asChild><ActionLink href="#contact">{t.callClinic}</ActionLink></DialogClose> : <ActionLink href="#contact" data-booking data-booking-service={service.image}>{t.requestService}</ActionLink>}</div>
           </>}
           {selection.kind === "gallery" && <img src={selection.src} alt={selection.alt} className="gallery-photo" />}
         </div>

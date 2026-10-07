@@ -17,7 +17,7 @@ export default function BookingSteps({ step, values, errors, preset, setField, l
     <ChoiceSelect id="booking-pet" label={t.petType} value={values.pet} placeholder={t.choosePet} options={petOptions} error={errors.pet} onChange={value => setField("pet", value)} />
     <ChoiceSelect id="booking-service" label={t.service} value={values.service} placeholder={t.chooseService} options={serviceOptions} error={errors.service} onChange={value => setField("service", value)} />
     {(preset.plan || preset.context) && <p className="field-hint">{preset.plan || preset.context}</p>}
-    {values.service === "emergency" && <p className="field-hint">{t.urgentBefore} <a href="tel:+861815785051">{t.urgentCall}</a> {t.urgentAfter}</p>}
+    {values.service === "emergency" && <p className="field-hint">{t.urgentDemo}</p>}
   </fieldset>;
   if (step === 1) return <fieldset data-booking-step>
     <legend>{t.scheduleLegend}</legend>
