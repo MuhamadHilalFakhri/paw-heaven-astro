@@ -12,27 +12,30 @@ import ActionLink from "./ActionLink";
 type ShowcaseImages = { cat: string; dog: string };
 
 export default function AdoptionProfiles({ pets, showcaseImages, locale }: LocaleProps & { pets: PetProfile[]; showcaseImages: ShowcaseImages }) {
-  const { adoption: t } = getMessages(locale);
-  const showcaseProfiles = [{ species: "Cat", ...t.cat }, { species: "Dog", ...t.dog }] as const;
+  const { adoption: t, interactive: ui } = getMessages(locale);
   const [species, setSpecies] = useState<"All" | "Cat" | "Dog">("All");
-  const filtered = pets.filter(pet => species === "All" || pet.species === species);
-  const filteredShowcase = showcaseProfiles.filter(pet => species === "All" || pet.species === species);
+  const filteredPets = pets.filter(pet => species === "All" || pet.species === species);
+  const demoProfiles = pets.length ? [] : t.demoProfiles.filter(pet => species === "All" || pet.species === species);
+  const resultCount = pets.length ? filteredPets.length : demoProfiles.length;
   useEffect(() => { ScrollTrigger.refresh(); }, [species]);
+
   return <>
     <ToggleGroup type="single" value={species} onValueChange={value => { if (value === "All" || value === "Cat" || value === "Dog") setSpecies(value); }} className="pet-filters" aria-label={t.filterLabel}>
       {(["All", "Cat", "Dog"] as const).map(item => <ToggleGroupItem key={item} value={item}>{t.filters[item]}</ToggleGroupItem>)}
     </ToggleGroup>
-    <p className="pet-results" role="status" aria-live="polite">{filtered.length ? formatMessage(t.count, { count: filtered.length }) : formatMessage(t.illustrations, { species: species === "All" ? t.allSpecies : t.speciesNames[species] })}</p>
-    {filtered.length ? <div className="pet-grid">{filtered.map(pet => <Card key={pet.name} className="pet-profile">
+    <p className="pet-results" role="status" aria-live="polite">{pets.length ? resultCount ? formatMessage(t.count, { count: resultCount }) : t.empty : formatMessage(t.count, { count: resultCount })}</p>
+    {pets.length ? <div className="pet-grid">{filteredPets.map(pet => <Card key={pet.name} className="pet-profile">
       <img {...pet.photo} loading="lazy" decoding="async" />
       <div><Badge className="pet-status">{t.status[pet.status]}</Badge><h3>{pet.name}</h3><dl><dt>{t.age}</dt><dd>{pet.age}</dd><dt>{t.character}</dt><dd>{pet.character}</dd></dl>
         <Accordion type="single" collapsible><AccordionItem value="profile"><AccordionTrigger>{formatMessage(t.knowPet, { name: pet.name })}</AccordionTrigger><AccordionContent><p>{pet.description}</p></AccordionContent></AccordionItem></Accordion>
         <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.name}>{formatMessage(t.askPet, { name: pet.name })}</ActionLink>
       </div>
-    </Card>)}</div> : <div className="pet-grid companion-showcase">{filteredShowcase.map(pet => <Card key={pet.species} className="companion-showcase-card" data-species={pet.species}>
-      <div className="companion-showcase-art"><img src={showcaseImages[pet.species.toLowerCase() as "cat" | "dog"]} alt={pet.alt} loading="lazy" decoding="async" /></div>
-      <div className="companion-showcase-copy"><span className="companion-kind">{pet.kind}</span><h3>{pet.title}</h3><p>{pet.description}</p>
-        <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.title}>{pet.ask}</ActionLink>
+    </Card>)}</div> : <div className="pet-grid demo-pet-grid">{demoProfiles.map(pet => <Card key={pet.name} className="pet-profile demo-pet-card">
+      <img src={showcaseImages[pet.species.toLowerCase() as "cat" | "dog"]} alt={pet.species === "Cat" ? t.cat.alt : t.dog.alt} loading="lazy" decoding="async" />
+      <div><Badge className="demo-badge">{ui.demoLabel}</Badge><h3>{pet.name}</h3>
+        <dl><dt>{t.age}</dt><dd>{pet.age}</dd><dt>{t.character}</dt><dd>{pet.character}</dd><dt>{t.availability}</dt><dd>{t.simulated}</dd></dl>
+        <Accordion type="single" collapsible><AccordionItem value="profile"><AccordionTrigger>{formatMessage(t.knowPet, { name: pet.name })}</AccordionTrigger><AccordionContent><p>{pet.description}</p></AccordionContent></AccordionItem></Accordion>
+        <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.name}>{formatMessage(t.askPet, { name: pet.name })}</ActionLink>
       </div>
     </Card>)}</div>}
   </>;
