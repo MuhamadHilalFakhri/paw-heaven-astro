@@ -2,10 +2,11 @@
   position: fixed;
   z-index: 32;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  left: 10px;
+  left: 0;
   width: 96px;
   height: 96px;
   pointer-events: none;
+  transform: translate3d(var(--pet-x, 10px), 0, 0);
 }
 
 .pet-companion__avatar {
@@ -36,23 +37,19 @@
   display: block;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 400% 300%;
-  transform-origin: center;
-  animation: pet-idle-bob 3.6s cubic-bezier(.37, 0, .63, 1) infinite, pet-idle-blink 5.2s steps(1, end) infinite;
-  filter: drop-shadow(0 4px 3px rgb(7 59 72 / 12%));
-  transition: filter 280ms ease-out;
+  transform-origin: 50% 82%;
+  filter: drop-shadow(0 2px 2px rgb(7 59 72 / 10%));
 }
+.pet-companion__art img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.pet-companion__art[data-pose="idle"] { animation: pet-idle-bob 3.6s ease-in-out infinite; }
 
 .pet-companion[data-facing="left"] .pet-companion__art { transform: scaleX(-1); }
 .pet-companion__art[data-pose="walk"] {
-  animation: pet-walk-frames 0.8s steps(1, end) infinite, pet-walk-bob 0.8s ease-in-out infinite,
-    pet-walk-sway 1.6s ease-in-out infinite;
+  translate: 0 var(--pet-lift, 0px);
 }
-.pet-companion__art[data-pose="play"] { background-position: 100% 100%; animation: pet-play 0.76s ease-in-out infinite alternate; }
-.pet-companion__art[data-pose="treat"] { background-position: 0 0; animation: none; }
-.pet-companion[data-panel-open="true"] .pet-companion__art { background-position: 0 0; animation: none; }
+.pet-companion__art[data-pose="play"] { animation: pet-play 0.9s ease-in-out infinite alternate; }
+.pet-companion__art[data-pose="treat"] { animation: none; }
+.pet-companion[data-panel-open="true"] .pet-companion__art { animation: none; }
 .pet-companion[data-facing="left"] .pet-companion__art[data-pose="play"] { transform: scaleX(-1); }
 .pet-companion__name {
   position: absolute;
@@ -113,21 +110,7 @@
 .pet-companion-restore { position: fixed; z-index: 32; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); left: 14px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #c5e3e8; border-radius: 50%; background: #fff; color: #075b66; box-shadow: 0 5px 15px rgb(7 59 72 / 18%); cursor: pointer; }
 .pet-companion-restore:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 
-@keyframes pet-idle-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -1.5px; } }
-@keyframes pet-idle-blink { 0%, 94%, 98%, 100% { background-position: 0 0; } 95%, 96% { background-position: 33.333% 100%; } }
-@keyframes pet-walk-frames {
-  0% { background-position: 33.333% 0; }
-  12.5% { background-position: 66.667% 0; }
-  25% { background-position: 100% 0; }
-  37.5% { background-position: 0 50%; }
-  50% { background-position: 33.333% 50%; }
-  62.5% { background-position: 66.667% 50%; }
-  75% { background-position: 100% 50%; }
-  87.5% { background-position: 0 100%; }
-  100% { background-position: 33.333% 0; }
-}
-@keyframes pet-walk-bob { 0%, 100% { translate: 0 0; } 25%, 75% { translate: 0 -1.4px; } 50% { translate: 0 -0.4px; } }
-@keyframes pet-walk-sway { 0%, 100% { rotate: -.4deg; } 50% { rotate: .4deg; } }
+@keyframes pet-idle-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -0.5px; } }
 @keyframes pet-play { from { rotate: -1.2deg; translate: 0 0; } to { rotate: 1.2deg; translate: 0 -2px; } }
 @keyframes pet-toss { from { opacity: 0; translate: 12px -4px; rotate: -20deg; } 30% { opacity: 1; } to { opacity: 0; translate: 42px -24px; rotate: 42deg; } }
 @keyframes pet-bubble-in { from { opacity: 0; translate: 0 5px; } to { opacity: 1; translate: 0 0; } }
@@ -137,5 +120,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pet-companion__art { translate: 0 0 !important; }
   .pet-companion__art, .pet-companion__art[data-pose="walk"], .pet-companion__art[data-pose="play"], .pet-companion__art[data-pose="treat"], .pet-companion__bubble, .pet-companion__toss, .pet-companion__panel { animation: none !important; transition: none !important; }
 }

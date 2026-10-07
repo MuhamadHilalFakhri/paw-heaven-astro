@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 import { Bone, Cat, Dog, Maximize2, Minimize2, Pause, PawPrint, Play, Volleyball, X } from "lucide-react";
-import miloSheet from "../../assets/clear/pet-companion-milo.webp";
-import cocoSheet from "../../assets/clear/pet-companion-coco.webp";
 import type { LocaleProps } from "../../i18n/config";
 import { getMessages } from "../../i18n/messages";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { usePetMotion } from "./use-pet-motion";
+import { PetSprite } from "./PetSprite";
 
 type Species = "cat" | "dog";
 type Reaction = "toy" | "treat" | null;
@@ -22,9 +21,8 @@ export default function PetCompanion({ locale }: LocaleProps) {
   const [open, setOpen] = useState(false);
   const [reaction, setReaction] = useState<Reaction>(null);
   const timeout = useRef<number | undefined>(undefined);
-  const motion = usePetMotion(walking, compact, hidden || busy || mobileMode || open || reaction !== null);
+  const motion = usePetMotion(walking, compact, hidden || busy || mobileMode || open || reaction !== null, species);
   const petName = species === "cat" ? "Milo" : "Coco";
-  const sprite = species === "cat" ? miloSheet.src : cocoSheet.src;
   const pose = open ? "idle" : reaction === "toy" ? "play" : reaction === "treat" ? "treat" : motion.dragging || motion.moving ? "walk" : "idle";
   const autoIsRunning = walking && !motion.reduced;
 
@@ -82,7 +80,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
       <PopoverTrigger asChild><button type="button" className="pet-companion__avatar" aria-label={`${t.petSettings}: ${petName}`}
         aria-haspopup="dialog" aria-expanded={open} onClick={onPetClick} onKeyDown={onKeyDown} onPointerDown={motion.onPointerDown}
         onPointerMove={motion.onPointerMove} onPointerUp={motion.onPointerUp} onPointerCancel={motion.onPointerUp}>
-        <span className="pet-companion__art" data-pose={pose} style={{ backgroundImage: `url("${sprite}")` }} />
+        <PetSprite species={species} pose={pose} travel={motion.travel} reduced={motion.reduced} compact={compact} />
         <span className="pet-companion__name">{petName}</span>
       </button></PopoverTrigger>
       <PopoverContent side="top" align="center" sideOffset={18} collisionPadding={12} className="pet-companion__panel">
