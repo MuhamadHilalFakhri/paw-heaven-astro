@@ -6,7 +6,7 @@ import AdoptionProfiles from "./interactive/AdoptionProfiles";
 import miloArt from "../assets/clear/adoption-milo.webp";
 import mimiArt from "../assets/clear/adoption-mimi.webp";
 import boluArt from "../assets/clear/adoption-bolu.webp";
-import lunaArt from "../assets/clear/adoption-luna.webp";
+import cocoArt from "../assets/clear/adoption-coco.webp";
 const pets = adoptablePets.filter(pet => pet.status !== 'Adopted');
 interface Props extends LocaleProps {}
 const { locale } = Astro.props;
@@ -20,5 +20,5 @@ const { page: t } = getMessages(locale);
     <h2 id="adoption-browser-title">{t.adoptionBrowserTitle}</h2>
     <p>{t.adoptionBrowserText}</p>
   </div>
-  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ Milo: miloArt.src, Mimi: mimiArt.src, Bolu: boluArt.src, Luna: lunaArt.src }} client:load />
+  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ Milo: miloArt.src, Mimi: mimiArt.src, Bolu: boluArt.src, Coco: cocoArt.src }} client:load />
 </section>

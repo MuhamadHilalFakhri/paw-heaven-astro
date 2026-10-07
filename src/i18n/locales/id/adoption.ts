@@ -8,7 +8,7 @@ export const adoption = {
     { species: "Cat", name: "Milo", age: "2 tahun", character: "Aktif dan ingin tahu", description: "Contoh profil kucing yang suka bermain dan berjemur dekat jendela.", imageAlt: "Ilustrasi kartun flat Milo, kucing belang jingga" },
     { species: "Cat", name: "Mimi", age: "1 tahun", character: "Lembut dan tenang", description: "Contoh profil kucing yang senang ditemani dalam suasana tenang.", imageAlt: "Ilustrasi kartun flat Mimi, kucing abu-abu dan putih" },
     { species: "Dog", name: "Bolu", age: "3 tahun", character: "Ramah dan aktif", description: "Contoh profil anjing yang suka berjalan-jalan.", imageAlt: "Ilustrasi kartun flat Bolu, anjing cokelat keemasan" },
-    { species: "Dog", name: "Luna", age: "2 tahun", character: "Sabar dan penyayang", description: "Contoh profil anjing yang senang beristirahat dekat keluarga.", imageAlt: "Ilustrasi kartun flat Luna, anjing krem dengan bercak cokelat" },
+    { species: "Dog", name: "Coco", age: "2 tahun", character: "Sabar dan penyayang", description: "Contoh profil anjing yang senang beristirahat dekat keluarga.", imageAlt: "Ilustrasi kartun flat Coco, anjing krem dengan bercak cokelat" },
   ],
   age: "Usia", character: "Karakter", availability: "Ketersediaan", simulated: "Hanya demo",
   carouselLabel: "Profil adopsi contoh", browseHint: "Geser atau gunakan panah untuk melihat profil.", previous: "Profil sebelumnya", next: "Profil berikutnya",

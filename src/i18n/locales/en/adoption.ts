@@ -8,7 +8,7 @@ export const adoption = {
     { species: "Cat", name: "Milo", age: "2 years", character: "Playful and curious", description: "Sample profile text for a curious cat who likes sunny windowsills.", imageAlt: "Flat cartoon illustration of Milo, an orange tabby cat" },
     { species: "Cat", name: "Mimi", age: "1 year", character: "Gentle and calm", description: "Sample profile text for a gentle cat who enjoys quiet company.", imageAlt: "Flat cartoon illustration of Mimi, a gray-and-white cat" },
     { species: "Dog", name: "Bolu", age: "3 years", character: "Friendly and active", description: "Sample profile text for an outgoing dog who loves walks.", imageAlt: "Flat cartoon illustration of Bolu, a golden-brown dog" },
-    { species: "Dog", name: "Luna", age: "2 years", character: "Patient and affectionate", description: "Sample profile text for an affectionate dog who likes resting nearby.", imageAlt: "Flat cartoon illustration of Luna, a cream dog with brown patches" },
+    { species: "Dog", name: "Coco", age: "2 years", character: "Patient and affectionate", description: "Sample profile text for an affectionate dog who likes resting nearby.", imageAlt: "Flat cartoon illustration of Coco, a cream dog with brown patches" },
   ],
   age: "Age", character: "Character", availability: "Availability", simulated: "Demo only",
   carouselLabel: "Sample adoption profiles", browseHint: "Swipe or use the arrows to browse profiles.", previous: "Previous profile", next: "Next profile",
