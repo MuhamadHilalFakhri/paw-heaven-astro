@@ -48,8 +48,8 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
       setMoving(true);
       tween = gsap.to(proxy, {
         x: target,
-        duration: Math.max(2.8, distance / (32 + Math.random() * 8)),
-        ease: "power1.inOut",
+        duration: Math.max(3.2, distance / (34 + Math.random() * 9)),
+        ease: "sine.inOut",
         onUpdate: () => write(proxy.x),
         onComplete: () => {
           setMoving(false);
@@ -70,13 +70,13 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
     return () => { tween?.kill(); pause?.kill(); window.removeEventListener("resize", resize); };
   }, [enabled, reduced, dragging, compact, suspended, clamp, write]);
 
-  const onPointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
+  const onPointerDown = useCallback((event: PointerEvent<HTMLButtonElement>) => {
     if (event.button !== 0) return;
     event.currentTarget.setPointerCapture(event.pointerId);
     drag.current = { x: event.clientX, left: ref.current?.getBoundingClientRect().left ?? EDGE, moved: false };
     setDragging(true);
   }, []);
-  const onPointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
+  const onPointerMove = useCallback((event: PointerEvent<HTMLButtonElement>) => {
     if (!drag.current) return;
     const delta = event.clientX - drag.current.x;
     if (Math.abs(delta) > 5) drag.current.moved = true;

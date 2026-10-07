@@ -13,10 +13,10 @@ export const interactive = {
   callClinic: "Lihat kontak demo", requestService: "Lihat simulasi layanan",
   reviewLabel: "Pengalaman pengunjung", previousSlide: "Slide sebelumnya", nextSlide: "Slide berikutnya",
   demoLabel: "Demo", demoSuccessTitle: "Simulasi selesai", demoSuccess: "Tidak ada data yang dikirim atau disimpan. Contoh ini hanya tampil di preview.",
-  petCompanionLabel: "Teman hewan PawCare", petMeet: "Kenalan dengan {name}", petSettings: "Kontrol hewan",
+  petCompanionLabel: "Teman hewan PawCare", petSettings: "Kontrol hewan",
   petChoose: "Pilih hewan", petCat: "Milo si kucing", petDog: "Coco si anjing",
   petPause: "Jeda jalan", petResume: "Lanjutkan jalan", petReduced: "Jalan otomatis mati karena pengaturan gerak minim.",
   petToy: "Lempar mainan", petTreat: "Beri camilan", petHide: "Sembunyikan hewan", petSize: "Ukuran hewan",
   petSmall: "Kecilkan", petLarge: "Besarkan", petShow: "Tampilkan teman hewan",
-  petHello: "Hai! Mau bermain?", petToyReaction: "Asyik! Seru sekali!", petTreatReaction: "Yum, terima kasih!",
+  petToyReaction: "Asyik! Seru sekali!", petTreatReaction: "Yum, terima kasih!",
 } satisfies typeof import("../en/interactive").interactive;
