@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
-import { Bone, Cat, Dog, Maximize2, Minimize2, Pause, PawPrint, Play, Sparkles, X } from "lucide-react";
+import { Bone, Cat, Dog, Maximize2, Minimize2, Pause, PawPrint, Play, Volleyball, X } from "lucide-react";
 import miloSheet from "../../assets/clear/pet-companion-milo.webp";
 import cocoSheet from "../../assets/clear/pet-companion-coco.webp";
 import type { LocaleProps } from "../../i18n/config";
@@ -78,7 +78,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
   return <Popover open={open} onOpenChange={setPanelOpen}>
     <div ref={motion.ref} className={`pet-companion${compact ? " is-compact" : ""}`} data-facing="right" data-panel-open={open} role="group" aria-label={t.petCompanionLabel}>
       {message && <span className="pet-companion__bubble" role="status" aria-live="polite">{message}</span>}
-      {reaction && <span className="pet-companion__toss" data-kind={reaction} aria-hidden="true">{reaction === "toy" ? "🧶" : species === "cat" ? "🐟" : "🦴"}</span>}
+      {reaction === "treat" && <span className="pet-companion__toss" data-kind="treat" aria-hidden="true">{species === "cat" ? "🐟" : "🦴"}</span>}
       <PopoverTrigger asChild><button type="button" className="pet-companion__avatar" aria-label={`${t.petSettings}: ${petName}`}
         aria-haspopup="dialog" aria-expanded={open} onClick={onPetClick} onKeyDown={onKeyDown} onPointerDown={motion.onPointerDown}
         onPointerMove={motion.onPointerMove} onPointerUp={motion.onPointerUp} onPointerCancel={motion.onPointerUp}>
@@ -92,7 +92,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
           <Button type="button" size="sm" variant={species === "dog" ? "default" : "outline"} aria-pressed={species === "dog"} onClick={() => setSpecies("dog")}><Dog aria-hidden="true" />{t.petDog}</Button>
         </div>
         <div className="pet-companion__actions">
-          <Button type="button" size="sm" variant="outline" onClick={() => react("toy")}><Sparkles aria-hidden="true" />{t.petToy}</Button>
+          <Button type="button" size="sm" variant="outline" onClick={() => react("toy")}><Volleyball aria-hidden="true" />{t.petToy}</Button>
           <Button type="button" size="sm" variant="outline" onClick={() => react("treat")}><Bone aria-hidden="true" />{t.petTreat}</Button>
         </div>
         <div className="pet-companion__footer">
