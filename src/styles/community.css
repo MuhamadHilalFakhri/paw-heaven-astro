@@ -6,10 +6,7 @@
 .adoption-browser {
   background: linear-gradient(to bottom, var(--page), var(--vaccine-tint));
 }
-.pet-grid:empty { display: none; }
-
-.community-grid,
-.pet-grid {
+.community-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -80,13 +77,6 @@
   margin: 24px auto 0;
   background: var(--hero-tint);
   text-align: center;
-}
-
-.pet-profile > img {
-  width: 100%;
-  height: 220px;
-  border-radius: var(--radius);
-  object-fit: cover;
 }
 
 .companion-showcase-card {
@@ -189,8 +179,7 @@
 
 @media (max-width: 640px) {
   .community-section { padding: 32px 6%; }
-  .community-grid,
-  .pet-grid { grid-template-columns: 1fr; }
+  .community-grid { grid-template-columns: 1fr; }
   .companion-showcase-card { grid-template-columns: 1fr; gap: 16px; }
   .companion-showcase-art { min-height: 220px; }
   .companion-showcase-art img { height: 200px; }

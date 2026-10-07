@@ -31,7 +31,6 @@
 
 .demo-review blockquote { margin: 0; }
 .demo-review figcaption { font-size: 14px; font-weight: 700; }
-.demo-pet-card > img { object-fit: contain; background: var(--feature-rose); }
 .demo-pet-card dl { grid-template-columns: auto minmax(0, 1fr); }
 .demo-pet-card dd { overflow-wrap: anywhere; }
 

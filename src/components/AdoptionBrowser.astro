@@ -3,8 +3,10 @@ import type { LocaleProps } from "../i18n/config";
 import { getMessages } from "../i18n/messages";
 import { adoptablePets } from "../data/community-content";
 import AdoptionProfiles from "./interactive/AdoptionProfiles";
-import catShowcase from "../assets/clear/adoption-cats-showcase.webp";
-import dogShowcase from "../assets/clear/adoption-dogs-showcase.webp";
+import miloArt from "../assets/clear/adoption-milo.webp";
+import mimiArt from "../assets/clear/adoption-mimi.webp";
+import boluArt from "../assets/clear/adoption-bolu.webp";
+import lunaArt from "../assets/clear/adoption-luna.webp";
 const pets = adoptablePets.filter(pet => pet.status !== 'Adopted');
 interface Props extends LocaleProps {}
 const { locale } = Astro.props;
@@ -18,5 +20,5 @@ const { page: t } = getMessages(locale);
     <h2 id="adoption-browser-title">{t.adoptionBrowserTitle}</h2>
     <p>{t.adoptionBrowserText}</p>
   </div>
-  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ cat: catShowcase.src, dog: dogShowcase.src }} client:load />
+  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ Milo: miloArt.src, Mimi: mimiArt.src, Bolu: boluArt.src, Luna: lunaArt.src }} client:load />
 </section>
