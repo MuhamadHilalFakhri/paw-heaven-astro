@@ -1,0 +1,17 @@
+export const interactive = {
+  required: "Mohon lengkapi kolom ini.", invalidEmail: "Masukkan alamat email yang valid.",
+  futureDate: "Pilih tanggal hari ini atau setelahnya.",
+  copied: "Berhasil disalin. Tempelkan permintaan ke pesan untuk klinik.",
+  copyUnavailable: "Pilih teks permintaan untuk menyalinnya, atau gunakan draf email.",
+  emailDraft: "Buka Draf Email", back: "Kembali", continue: "Lanjut", done: "Selesai",
+  bookingTitle: "Ajukan janji kunjungan", bookingDescription: "Pilih kebutuhan Anda. Tim kami akan mengonfirmasi ketersediaan, durasi, dan harga.",
+  bookingEyebrow: "Mari rencanakan kunjungan Anda", adoptionTitle: "Tanya tentang adopsi",
+  adoptionDescription: "Ceritakan sahabat seperti apa yang Anda cari. Pertanyaan ini tidak membuat janji kunjungan.",
+  adoptionEyebrow: "Pertanyaan adopsi", galleryTitle: "Suasana klinik", clinicPhoto: "Foto klinik",
+  serviceTitle: "Jelajahi layanan kami", serviceDescription: "Temukan perawatan untuk sahabat kesayangan.",
+  serviceEyebrow: "Perawatan sesuai kebutuhan sahabat", closeDialog: "Tutup dialog",
+  discuss: "Hal yang dapat didiskusikan dengan tim", beforeVisit: "Sebelum berkunjung",
+  priceHint: "Tim kami akan mengonfirmasi harga dan perkiraan durasi perawatan sebelum Anda menyetujui kunjungan.",
+  callClinic: "Hubungi Klinik", requestService: "Ajukan Layanan Ini",
+  reviewLabel: "Pengalaman pengunjung", previousSlide: "Slide sebelumnya", nextSlide: "Slide berikutnya",
+} satisfies typeof import("../en/interactive").interactive;

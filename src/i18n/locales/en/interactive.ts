@@ -1,0 +1,17 @@
+export const interactive = {
+  required: "Please complete this field.", invalidEmail: "Please enter a valid email address.",
+  futureDate: "Please choose today or a future date.",
+  copied: "Copied. Paste the request into a message to the clinic.",
+  copyUnavailable: "Select the request text to copy it, or use the email draft.",
+  emailDraft: "Open email draft", back: "Back", continue: "Continue", done: "Done",
+  bookingTitle: "Request an appointment", bookingDescription: "Choose your preferences. Our team will confirm availability, duration, and pricing.",
+  bookingEyebrow: "Let’s plan your visit", adoptionTitle: "Ask about adoption",
+  adoptionDescription: "Tell us what kind of companion you’re interested in. This enquiry does not book an appointment.",
+  adoptionEyebrow: "Adoption enquiry", galleryTitle: "Around the clinic", clinicPhoto: "Clinic photo",
+  serviceTitle: "Explore our services", serviceDescription: "Discover care for your companion.",
+  serviceEyebrow: "Care that fits your companion", closeDialog: "Close dialog",
+  discuss: "What to discuss with the team", beforeVisit: "Before your visit",
+  priceHint: "The team will confirm the price and expected duration for your pet before you agree to a visit.",
+  callClinic: "Call the clinic", requestService: "Request this service",
+  reviewLabel: "Client experiences", previousSlide: "Previous slide", nextSlide: "Next slide",
+};
