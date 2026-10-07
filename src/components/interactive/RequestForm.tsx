@@ -1,3 +1,5 @@
+import type { LocaleProps } from "../../i18n/config";
+import { getMessages, formatMessage } from "../../i18n/messages";
 import { useState, type SubmitEvent } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "../ui/button";
@@ -10,7 +12,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "..
 import { emailDraft } from "../../scripts/form-utils";
 import newsletterBear from "../../assets/clear/newsletter-polar-bear.webp";
 
-export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" }) {
+export default function RequestForm({ kind, locale }: LocaleProps & { kind: "newsletter" | "feedback" }) {
+  const { forms: t, interactive: ui } = getMessages(locale);
   const newsletter = kind === "newsletter";
   const [values, setValues] = useState({ email: "", name: "", review: "" });
   const [consent, setConsent] = useState(false);
@@ -25,30 +28,30 @@ export default function RequestForm({ kind }: { kind: "newsletter" | "feedback" 
     event.preventDefault();
     const next: Record<string, string> = {};
     event.currentTarget.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input,textarea").forEach(field => {
-      if (!field.value.trim() || !field.checkValidity()) next[field.name] = field.type === "email" ? "Please enter a valid email address." : "Please complete this field.";
+      if (!field.value.trim() || !field.checkValidity()) next[field.name] = field.type === "email" ? ui.invalidEmail : ui.required;
     });
-    if (newsletter && !consent) next.consent = "Please confirm you would like to receive the newsletter.";
+    if (newsletter && !consent) next.consent = t.consentError;
     setErrors(next);
     if (Object.keys(next).length) { document.getElementById(`${kind}-${Object.keys(next)[0]}`)?.focus(); return; }
-    setSummary(newsletter ? `Please add ${values.email} to the PawCare+ newsletter.\nI consent to receiving news, updates, and special offers by email.` : `Feedback from ${values.name.trim()}\n\n${values.review.trim()}\n\nPermission to publish with first name: ${consent ? "Yes" : "No"}`);
-    setStatus("Your draft is ready. Send it in your email app to share it with the team.");
+    setSummary(newsletter ? formatMessage(t.newsletterSummary, { email: values.email }) : formatMessage(t.feedbackSummary, { name: values.name.trim(), review: values.review.trim(), consent: consent ? t.yes : t.no }));
+    setStatus(t.ready);
     window.setTimeout(() => ScrollTrigger.refresh(), 0);
   };
   const content = <form id={`${kind}-form`} className="request-form feedback-form" noValidate onSubmit={submit}>
-    {newsletter ? <><Label htmlFor="newsletter-email">Email address</Label><Input id="newsletter-email" name="email" type="email" autoComplete="email" required placeholder="you@example.com" value={values.email} onChange={event => change("email", event.target.value)} aria-invalid={!!errors.email} aria-describedby="newsletter-email-error" /><span id="newsletter-email-error" className="field-error" aria-live="polite">{errors.email}</span></> : <>
-      <Label htmlFor="feedback-name">Your first name</Label><Input id="feedback-name" name="name" autoComplete="given-name" required maxLength={80} value={values.name} onChange={event => change("name", event.target.value)} aria-invalid={!!errors.name} aria-describedby="feedback-name-error" /><span id="feedback-name-error" className="field-error" aria-live="polite">{errors.name}</span>
-      <Label htmlFor="feedback-review">Your experience</Label><Textarea id="feedback-review" name="review" required rows={4} maxLength={1000} value={values.review} onChange={event => change("review", event.target.value)} aria-invalid={!!errors.review} aria-describedby="feedback-review-error" /><span id="feedback-review-error" className="field-error" aria-live="polite">{errors.review}</span>
+    {newsletter ? <><Label htmlFor="newsletter-email">{t.email}</Label><Input id="newsletter-email" name="email" type="email" autoComplete="email" required placeholder={t.emailPlaceholder} value={values.email} onChange={event => change("email", event.target.value)} aria-invalid={!!errors.email} aria-describedby="newsletter-email-error" /><span id="newsletter-email-error" className="field-error" aria-live="polite">{errors.email}</span></> : <>
+      <Label htmlFor="feedback-name">{t.firstName}</Label><Input id="feedback-name" name="name" autoComplete="given-name" required maxLength={80} value={values.name} onChange={event => change("name", event.target.value)} aria-invalid={!!errors.name} aria-describedby="feedback-name-error" /><span id="feedback-name-error" className="field-error" aria-live="polite">{errors.name}</span>
+      <Label htmlFor="feedback-review">{t.experience}</Label><Textarea id="feedback-review" name="review" required rows={4} maxLength={1000} value={values.review} onChange={event => change("review", event.target.value)} aria-invalid={!!errors.review} aria-describedby="feedback-review-error" /><span id="feedback-review-error" className="field-error" aria-live="polite">{errors.review}</span>
     </>}
-    <div className="consent-label"><Checkbox id={`${kind}-consent`} checked={consent} onCheckedChange={checked => { setConsent(checked === true); setErrors(previous => ({ ...previous, consent: "" })); setSummary(""); setStatus(""); }} aria-invalid={!!errors.consent} aria-describedby={`${kind}-consent-error`} /><Label htmlFor={`${kind}-consent`}>{newsletter ? "I’d like to receive news, updates, and special offers by email." : "You may publish my review with my first name."}</Label></div>
+    <div className="consent-label"><Checkbox id={`${kind}-consent`} checked={consent} onCheckedChange={checked => { setConsent(checked === true); setErrors(previous => ({ ...previous, consent: "" })); setSummary(""); setStatus(""); }} aria-invalid={!!errors.consent} aria-describedby={`${kind}-consent-error`} /><Label htmlFor={`${kind}-consent`}>{newsletter ? t.newsletterConsent : t.feedbackConsent}</Label></div>
     <span id={`${kind}-consent-error`} className="field-error" aria-live="polite">{errors.consent}</span>
-    {!newsletter && <p className="field-hint">Feedback is reviewed by the team before any publication.</p>}
+    {!newsletter && <p className="field-hint">{t.feedbackHint}</p>}
     {newsletter ? <div className="newsletter-action">
       <img className="newsletter-bear" src={newsletterBear.src} width={newsletterBear.width} height={newsletterBear.height} alt="" aria-hidden="true" />
-      <Button type="submit" className="paw-button">Prepare subscription</Button>
-    </div> : <Button type="submit" className="paw-button">Prepare feedback</Button>}
-    {summary && <><ScrollArea className="summary-scroll"><pre className="request-summary" tabIndex={0}>{summary}</pre></ScrollArea><div className="dialog-actions"><Button asChild className="paw-button"><a href={emailDraft(newsletter ? "Newsletter subscription request" : "Feedback about my visit", summary)}>Open email draft</a></Button><Button type="button" className="paw-button secondary-action" onClick={async () => { try { await navigator.clipboard.writeText(summary); setStatus("Copied. Paste the request into a message to the clinic."); } catch { setStatus("Select the draft text to copy it, or use your email app."); } }}>Copy {newsletter ? "request" : "feedback"}</Button></div></>}
+      <Button type="submit" className="paw-button">{t.prepareSubscription}</Button>
+    </div> : <Button type="submit" className="paw-button">{t.prepareFeedback}</Button>}
+    {summary && <><ScrollArea className="summary-scroll"><pre className="request-summary" tabIndex={0}>{summary}</pre></ScrollArea><div className="dialog-actions"><Button asChild className="paw-button"><a href={emailDraft(newsletter ? t.newsletterSubject : t.feedbackSubject, summary)}>{ui.emailDraft}</a></Button><Button type="button" className="paw-button secondary-action" onClick={async () => { try { await navigator.clipboard.writeText(summary); setStatus(ui.copied); } catch { setStatus(ui.copyUnavailable); } }}>{newsletter ? t.copyRequest : t.copyFeedback}</Button></div></>}
     <p className="form-status" role="status" aria-live="polite">{status}</p>
   </form>;
-  return newsletter ? content : <Accordion type="single" collapsible className="feedback-details" onValueChange={() => window.setTimeout(() => ScrollTrigger.refresh(), 250)}><AccordionItem value="feedback"><AccordionTrigger>Share your experience</AccordionTrigger><AccordionContent>{content}</AccordionContent></AccordionItem></Accordion>;
+  return newsletter ? content : <Accordion type="single" collapsible className="feedback-details" onValueChange={() => window.setTimeout(() => ScrollTrigger.refresh(), 250)}><AccordionItem value="feedback"><AccordionTrigger>{t.share}</AccordionTrigger><AccordionContent>{content}</AccordionContent></AccordionItem></Accordion>;
 }
 

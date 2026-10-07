@@ -8,6 +8,7 @@ function CarouselPrevious({
   className,
   variant = "outline",
   size = "icon",
+  children,
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
@@ -29,7 +30,7 @@ function CarouselPrevious({
       {...props}
     >
       <ArrowLeft />
-      <span className="sr-only">Previous slide</span>
+      {children ?? <span className="sr-only">Previous slide</span>}
     </Button>
   )
 }
@@ -38,6 +39,7 @@ function CarouselNext({
   className,
   variant = "outline",
   size = "icon",
+  children,
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
@@ -59,7 +61,7 @@ function CarouselNext({
       {...props}
     >
       <ArrowRight />
-      <span className="sr-only">Next slide</span>
+      {children ?? <span className="sr-only">Next slide</span>}
     </Button>
   )
 }

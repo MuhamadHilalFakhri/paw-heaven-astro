@@ -1,4 +1,6 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import { clinicPhotos, clientReviews } from "../data/community-content";
 import RequestForm from "./interactive/RequestForm";
 import ReviewCarousel from "./interactive/ReviewCarousel";
@@ -6,36 +8,40 @@ import ActionLink from "./interactive/ActionLink";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 const reviews = clientReviews.filter(review => review.permissionConfirmed);
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section id="community" class="community-section" aria-labelledby="community-title">
   <div class="section-heading">
-    <p class="eyebrow">Feel at home before you visit</p>
-    <h2 id="community-title">Your visit, your story</h2>
-    <p>Get in touch before your first visit, or tell us about the care your companion received.</p>
+    <p class="eyebrow">{t.communityEyebrow}</p>
+    <h2 id="community-title">{t.communityTitle}</h2>
+    <p>{t.communityText}</p>
   </div>
   <div class="community-grid">
     <Card className="community-card">
-      <h3>Plan your first visit</h3>
+      <h3>{t.firstVisit}</h3>
       <p>9235 Bayberry Drive<br />Hendersonville, NC 28792</p>
-      <p>Ask about the care setting, what to bring, and arrangements that could help your pet feel comfortable.</p>
+      <p>{t.firstVisitText}</p>
       {clinicPhotos.length > 0 && (
         <div class="clinic-gallery">
           {clinicPhotos.map(photo => (
-            <Button type="button" className="gallery-thumb" data-gallery-src={photo.src} data-gallery-alt={photo.alt} aria-label={`View photo: ${photo.alt}`} aria-haspopup="dialog">
+            <Button type="button" className="gallery-thumb" data-gallery-src={photo.src} data-gallery-alt={photo.alt} aria-label={t.viewPhoto.replace("{name}", photo.alt)} aria-haspopup="dialog">
               <img src={photo.src} width={photo.width} height={photo.height} alt={photo.alt} loading="lazy" decoding="async" />
             </Button>
           ))}
         </div>
       )}
-      <ActionLink href="#contact" data-booking data-booking-context="First visit enquiry">Plan a visit</ActionLink>
+      <ActionLink href="#contact" data-booking data-booking-context={t.firstVisitContext}>{t.planVisit}</ActionLink>
     </Card>
     <Card className="community-card">
-      <h3>Pet parent stories</h3>
+      <h3>{t.stories}</h3>
       {reviews.length > 0 ? (
-        <ReviewCarousel reviews={reviews} client:load />
-      ) : <p>Every companion has a story. Tell us about your visit and what made a difference for your pet.</p>}
-      <RequestForm kind="feedback" client:load />
+        <ReviewCarousel locale={locale} reviews={reviews} client:load />
+      ) : <p>{t.storiesText}</p>}
+      <RequestForm locale={locale} kind="feedback" client:load />
     </Card>
   </div>
 </section>

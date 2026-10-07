@@ -1,18 +1,24 @@
 ---
+import type { LocaleProps } from "../i18n/config";
+import { getMessages } from "../i18n/messages";
 import faqDogImage from "../assets/clear/faq-dog.webp";
 import faqImage from "../assets/clear/faq.webp";
 import FaqAccordion from "./interactive/FaqAccordion";
+interface Props extends LocaleProps {}
+const { locale } = Astro.props;
+const { page: t } = getMessages(locale);
+
 ---
 
 <section id="faq" class="faq-section">
   <div>
-    <h2>Frequently Asked<br />Questions <span aria-hidden="true">✧</span></h2>
+    <h2>{t.faqTitle[0]}<br />{t.faqTitle[1]} <span aria-hidden="true">✧</span></h2>
     <img
       class="faq-illustration"
       src={faqImage.src}
       width={faqImage.width}
       height={faqImage.height}
-      alt="A woman comforting a rabbit and a dog"
+      alt={t.faqAlt}
       loading="lazy"
       decoding="async"
     />
@@ -27,6 +33,6 @@ import FaqAccordion from "./interactive/FaqAccordion";
       loading="lazy"
       decoding="async"
     />
-    <FaqAccordion client:load />
+    <FaqAccordion locale={locale} client:load />
   </div>
 </section>
