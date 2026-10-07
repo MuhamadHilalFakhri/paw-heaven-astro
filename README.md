@@ -1,6 +1,6 @@
 # PawCare+
 
-PawCare+ is a single-page Astro landing site. Astro components render the content, React islands handle interactions, and shadcn/ui provides the shared controls. Copy lives in `src/data/site-content.ts`.
+PawCare+ is an Astro landing site with Indonesian and English versions. Astro components render the content, React islands handle interactions, and shadcn/ui provides the shared controls. Translations live in `src/i18n/locales`.
 
 ## Development
 
@@ -19,9 +19,20 @@ npm run build
 npm run preview
 ```
 
-The page is in `src/pages/index.astro`, the page shell is in `src/layouts/BaseLayout.astro`, styles are split under `src/styles`, and the page imports WebP images from `src/assets/clear`. Original image files are kept beside the WebP versions as source material.
+The shared page is in `src/layouts/LandingPage.astro`, the document shell is in `src/layouts/BaseLayout.astro`, styles are split under `src/styles`, and the page imports WebP images from `src/assets/clear`. Original image files are kept beside the WebP versions as source material.
 
 The previous TanStack Start source is archived beside this project at `D:\Landing Page - Vet - legacy-source`; it is not part of the Astro build.
+
+## Languages
+
+Indonesian is the default at `/`. English is available at `/en/`.
+The shadcn Select in the header switches routes while preserving the section hash
+and query string. Refreshing keeps the selected language through its URL.
+Translations cover sections, navigation, dialogs, validation, calendar labels,
+plan comparisons, and email summaries. Both routes render localized HTML before
+hydration, with the corresponding document language and alternate language links.
+Add matching keys to both locale dictionaries; TypeScript checks the message shapes.
+Pet species, service, and time values remain stable across languages.
 
 ## Motion and responsive layout
 
