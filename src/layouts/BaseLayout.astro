@@ -27,7 +27,7 @@ const { title = page.title, description = page.description } = Astro.props;
     <meta property="og:locale:alternate" content={locale === "id" ? "en_US" : "id_ID"} />
     <link rel="alternate" hreflang="id" href={localePath("id")} />
     <link rel="alternate" hreflang="en" href={localePath("en")} />
-    <link rel="alternate" hreflang="x-default" href={localePath("id")} />
+    <link rel="alternate" hreflang="x-default" href={localePath("en")} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <link rel="icon" href="/pawcare-mark.svg" type="image/svg+xml" />

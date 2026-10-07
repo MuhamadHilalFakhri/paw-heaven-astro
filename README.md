@@ -25,7 +25,7 @@ The previous TanStack Start source is archived beside this project at `D:\Landin
 
 ## Languages
 
-Indonesian is the default at `/`. English is available at `/en/`.
+English is the default at `/`. Indonesian is available at `/id/`.
 The shadcn Select in the header switches routes while preserving the section hash
 and query string. Refreshing keeps the selected language through its URL.
 Translations cover sections, navigation, dialogs, validation, calendar labels,
