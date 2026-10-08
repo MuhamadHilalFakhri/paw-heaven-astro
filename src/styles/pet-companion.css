@@ -123,3 +123,6 @@
   .pet-companion__art { translate: 0 0 !important; }
   .pet-companion__art, .pet-companion__art[data-pose="walk"], .pet-companion__art[data-pose="play"], .pet-companion__art[data-pose="treat"], .pet-companion__bubble, .pet-companion__toss, .pet-companion__panel { animation: none !important; transition: none !important; }
 }
+[data-safe="false"].pet-companion { visibility: hidden; }
+.pet-companion { width: 88px; }
+.pet-companion.is-compact { width: 68px; }
