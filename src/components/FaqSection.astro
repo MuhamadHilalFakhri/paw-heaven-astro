@@ -33,6 +33,6 @@ const { page: t } = getMessages(locale);
       loading="lazy"
       decoding="async"
     />
-    <FaqAccordion locale={locale} client:load />
+    <FaqAccordion locale={locale} client:visible={{ rootMargin: "240px" }} />
   </div>
 </section>

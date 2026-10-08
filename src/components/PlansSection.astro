@@ -32,7 +32,7 @@ const { plans } = getSiteContent(locale);
       {t.plansText[1]}
     </p>
   </div>
-  <PlanFinder locale={locale} client:load />
+  <PlanFinder locale={locale} client:visible={{ rootMargin: "240px" }} />
   <div class="plan-grid">
     {plans.map((plan) => {
       const image = planImages[plan.image];

@@ -25,7 +25,7 @@ const { navigationLinks } = getSiteContent(locale);
     <div>
       <h3>{t.newsletter}</h3>
       <p>{t.newsletterText}</p>
-      <RequestForm locale={locale} kind="newsletter" client:load />
+      <RequestForm locale={locale} kind="newsletter" client:visible={{ rootMargin: "240px" }} />
     </div>
     <div>
       <h3>{t.contact}</h3>

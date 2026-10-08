@@ -44,7 +44,7 @@ const { locale } = Astro.props;
     </div>
   </main>
   </PageScrollArea>
-  <PetCompanion locale={locale} client:load />
+  <PetCompanion locale={locale} client:media="(min-width: 901px)" />
   <InteractionDialogs locale={locale} client:load />
   <MobileBookingBar locale={locale} />
 </BaseLayout>

@@ -42,9 +42,9 @@ const { page: t } = getMessages(locale);
     <Card className="community-card">
       <h3>{t.stories}</h3>
       {reviews.length > 0 ? (
-        <ReviewCarousel locale={locale} reviews={reviews} client:load />
+        <ReviewCarousel locale={locale} reviews={reviews} client:visible={{ rootMargin: "240px" }} />
       ) : <figure class="demo-review"><Badge className="demo-badge">{t.demoLabel}</Badge><blockquote><p>“{t.sampleReviewQuote}”</p></blockquote><figcaption>{t.sampleReviewName}</figcaption></figure>}
-      <RequestForm locale={locale} kind="feedback" client:load />
+      <RequestForm locale={locale} kind="feedback" client:visible={{ rootMargin: "240px" }} />
     </Card>
   </div>
 </section>

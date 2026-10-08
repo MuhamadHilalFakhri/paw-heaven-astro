@@ -17,7 +17,7 @@ export default function PetCompanion({ locale }: LocaleProps) {
   const [compact, setCompact] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [mobileMode, setMobileMode] = useState(false);
+  const [mobileMode, setMobileMode] = useState(true);
   const [open, setOpen] = useState(false);
   const [reaction, setReaction] = useState<Reaction>(null);
   const timeout = useRef<number | undefined>(undefined);

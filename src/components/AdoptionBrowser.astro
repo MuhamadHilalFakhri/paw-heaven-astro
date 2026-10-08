@@ -20,5 +20,5 @@ const { page: t } = getMessages(locale);
     <h2 id="adoption-browser-title">{t.adoptionBrowserTitle}</h2>
     <p>{t.adoptionBrowserText}</p>
   </div>
-  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ Milo: miloArt.src, Mimi: mimiArt.src, Bolu: boluArt.src, Coco: cocoArt.src }} client:load />
+  <AdoptionProfiles locale={locale} pets={pets} showcaseImages={{ Milo: miloArt.src, Mimi: mimiArt.src, Bolu: boluArt.src, Coco: cocoArt.src }} client:visible={{ rootMargin: "240px" }} />
 </section>
