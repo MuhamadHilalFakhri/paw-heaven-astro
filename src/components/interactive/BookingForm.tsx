@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { DialogClose } from "../ui/dialog";
-import { bookingSummary, type BookingPreset } from "./booking-model";
+import { type BookingPreset } from "./booking-model";
+import BookingReceipt from "./BookingReceipt";
 import BookingSteps from "./BookingSteps";
 import { useBooking } from "./use-booking";
 
@@ -12,7 +13,7 @@ export default function BookingForm({ preset, locale }: LocaleProps & { preset: 
   const { booking: t, interactive: ui } = getMessages(locale);
   const { values, errors, setField, step, setStep, validate, formRef } = useBooking(preset, locale);
   const [complete, setComplete] = useState(false);
-  const summary = bookingSummary(values, preset, locale);
+
 
   return <>
     {!complete && <ol className="booking-progress" aria-label={t.stepsLabel}>
@@ -23,13 +24,13 @@ export default function BookingForm({ preset, locale }: LocaleProps & { preset: 
         <Badge className="demo-badge">{ui.demoLabel}</Badge>
         <h3 id="booking-demo-title">{t.successTitle}</h3>
         <p role="status" aria-live="polite">{t.successMessage}</p>
-        <pre className="request-summary" tabIndex={0}>{summary}</pre>
+        <BookingReceipt values={values} preset={preset} locale={locale} />
         <DialogClose asChild><Button type="button" className="paw-button">{ui.done}</Button></DialogClose>
       </section> : <>
         {step < 3 ? <BookingSteps locale={locale} step={step} values={values} errors={errors} setField={setField} preset={preset} /> : <fieldset data-booking-step>
           <legend>{t.reviewLegend}</legend>
           <p className="field-hint">{t.reviewHint}</p>
-          <pre id="booking-summary" className="request-summary" tabIndex={0}>{summary}</pre>
+          <BookingReceipt values={values} preset={preset} locale={locale} />
         </fieldset>}
         <div className="booking-actions">
           {step > 0 && <Button type="button" className="paw-button secondary-action" onClick={() => setStep(step - 1)}>{ui.back}</Button>}
