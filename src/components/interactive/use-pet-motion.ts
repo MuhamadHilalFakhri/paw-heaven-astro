@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type PointerEvent } from "rea
 import { gsap } from "gsap";
 import type { PetSpecies, PetTravel } from "./pet-frames";
 
-import { findPetLane, type PetLane } from "./pet-safe-lane";
+type PetLane = { left: number; right: number };
 type DragStart = { x: number; left: number; moved: boolean };
 const EDGE = 4;
 
@@ -47,10 +47,8 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
     const walk = () => {
       const { left, right } = lane.current;
       if (right - left < 24) return;
-      const span = Math.max(1, right - left);
       const goingRight = proxy.x < (left + right) / 2;
-      const progress = goingRight ? 0.7 + Math.random() * 0.28 : Math.random() * 0.28;
-      const target = left + span * progress;
+      const target = goingRight ? right : left;
       const distance = Math.abs(target - proxy.x);
       const direction = Math.sign(target - proxy.x);
       const pace = (species === "cat" ? 36 : 40) * (compact ? 68 / 88 : 1) * (0.92 + Math.random() * 0.16);
@@ -70,10 +68,7 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
       journey.to(proxy, { x: target, duration: rampDuration, ease: "power1.out" });
     };
     const resize = () => {
-      const next = findPetLane(node, position.current.x);
-      node.dataset.safe = String(Boolean(next));
-      if (next && next.left === lane.current.left && next.right === lane.current.right) return;
-      lane.current = next ?? { left: EDGE, right: EDGE };
+      lane.current = { left: EDGE, right: Math.max(EDGE, window.innerWidth - node.offsetWidth - EDGE) };
       journey?.kill();
       pause?.kill();
       setMoving(false);
@@ -82,16 +77,9 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
       if (active) pause = gsap.delayedCall(0.35, walk);
     };
     setMoving(false);
-    if (active) pause = gsap.delayedCall(0.35, walk);
     resize();
     window.addEventListener("resize", resize);
-    let frame = 0;
-    const scroll = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(resize); };
-    document.addEventListener("scroll", scroll, true);
-    const observer = new ResizeObserver(scroll);
-    const shell = document.querySelector(".site-shell");
-    if (shell) observer.observe(shell);
-    return () => { journey?.kill(); pause?.kill(); cancelAnimationFrame(frame); observer.disconnect(); document.removeEventListener("scroll", scroll, true); window.removeEventListener("resize", resize); };
+    return () => { journey?.kill(); pause?.kill(); window.removeEventListener("resize", resize); };
   }, [enabled, reduced, dragging, compact, suspended, species, clamp, write]);
 
   const onPointerDown = useCallback((event: PointerEvent<HTMLButtonElement>) => {
