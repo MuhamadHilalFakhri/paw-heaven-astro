@@ -1,49 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Heart } from "lucide-react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { PetProfile } from "../../data/community-content";
 import type { LocaleProps } from "../../i18n/config";
 import { getMessages, formatMessage } from "../../i18n/messages";
+import { getAdoptionExtras } from "../../i18n/adoption-extras";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { Card } from "../ui/card";
-import { Badge } from "../ui/badge";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../ui/accordion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
-import ActionLink from "./ActionLink";
+import { Button } from "../ui/button";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "../ui/carousel";
+import AdoptionCard from "./AdoptionCard";
+import AdoptionCarouselControls from "./AdoptionCarouselControls";
+import AdoptionQuiz from "./AdoptionQuiz";
+import type { ProfileCard, ShowcaseImages } from "./adoption-model";
 
-type ShowcaseImages = Record<string, string>;
-type ProfileCard = { name: string; species: string; age: string; character: string; description: string; status?: PetProfile["status"]; photo?: PetProfile["photo"]; imageAlt?: string };
-
+type Filter = "All" | "Cat" | "Dog" | "Favorite";
 export default function AdoptionProfiles({ pets, showcaseImages, locale }: LocaleProps & { pets: PetProfile[]; showcaseImages: ShowcaseImages }) {
-  const { adoption: t, interactive: ui } = getMessages(locale);
-  const [species, setSpecies] = useState<"All" | "Cat" | "Dog">("All");
-  const filteredPets = pets.filter(pet => species === "All" || pet.species === species);
-  const demoProfiles = pets.length ? [] : t.demoProfiles.filter(pet => species === "All" || pet.species === species);
-  const profiles: ProfileCard[] = pets.length ? filteredPets : demoProfiles;
-  const resultCount = profiles.length;
-  useEffect(() => { ScrollTrigger.refresh(); }, [species]);
+  const { adoption: t } = getMessages(locale);
+  const extra = getAdoptionExtras(locale);
+  const [filter, setFilter] = useState<Filter>("All");
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [recommended, setRecommended] = useState<string | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const allProfiles: ProfileCard[] = pets.length ? pets : t.demoProfiles;
+  const profiles = useMemo(() => allProfiles.filter(pet => filter === "All" || (filter === "Favorite" ? favorites.includes(pet.name) : pet.species === filter)), [allProfiles, filter, favorites]);
+  const changeFilter = (value: string) => {
+    if (!["All", "Cat", "Dog", "Favorite"].includes(value)) return;
+    setFilter(value as Filter); setRecommended(null);
+  };
+  const recommend = (name: string) => { setFilter("All"); setRecommended(name); };
+  useEffect(() => { ScrollTrigger.refresh(); }, [filter, favorites, recommended]);
+  useEffect(() => {
+    if (!api || !recommended) return;
+    const index = profiles.findIndex(pet => pet.name === recommended);
+    if (index >= 0) api.scrollTo(Math.min(index, api.scrollSnapList().length - 1));
+  }, [api, recommended, profiles]);
 
   return <>
-    <ToggleGroup type="single" value={species} onValueChange={value => { if (value === "All" || value === "Cat" || value === "Dog") setSpecies(value); }} className="pet-filters" aria-label={t.filterLabel}>
+    <AdoptionQuiz locale={locale} profiles={allProfiles} images={showcaseImages} onRecommend={recommend} />
+    <ToggleGroup type="single" value={filter} onValueChange={changeFilter} className="pet-filters" aria-label={t.filterLabel}>
       {(["All", "Cat", "Dog"] as const).map(item => <ToggleGroupItem key={item} value={item}>{t.filters[item]}</ToggleGroupItem>)}
+      <ToggleGroupItem value="Favorite"><Heart aria-hidden="true" />{extra.favorites} ({favorites.length})</ToggleGroupItem>
     </ToggleGroup>
-    <p className="pet-results" role="status" aria-live="polite">{pets.length && !resultCount ? t.empty : formatMessage(t.count, { count: resultCount })}</p>
-    {resultCount > 0 && <Carousel opts={{ align: "start", slidesToScroll: 1 }} className="pet-carousel" aria-label={t.carouselLabel}>
-      <CarouselContent className="pet-carousel-track">{profiles.map(pet => {
-        const isDemo = !pets.length;
-        const photo = pet.photo;
-        const image = isDemo ? showcaseImages[pet.name] : photo?.src;
-        const alt = isDemo ? pet.imageAlt : photo?.alt;
-        return <CarouselItem key={pet.name} className="pet-carousel-slide"><Card className={`pet-profile${isDemo ? " demo-pet-card" : ""}`}>
-          <div className={isDemo ? "demo-pet-art" : "pet-profile-art"}><img src={image} alt={alt ?? pet.name} loading="lazy" decoding="async" /></div>
-          <div className="pet-profile-content">
-            <Badge className={isDemo ? "demo-badge" : "pet-status"}>{isDemo ? ui.demoLabel : t.status[pet.status!]}</Badge><h3>{pet.name}</h3>
-            <dl><dt>{t.age}</dt><dd>{pet.age}</dd><dt>{t.character}</dt><dd>{pet.character}</dd>{isDemo && <><dt>{t.availability}</dt><dd>{t.simulated}</dd></>}</dl>
-            <Accordion type="single" collapsible><AccordionItem value="profile"><AccordionTrigger>{formatMessage(t.knowPet, { name: pet.name })}</AccordionTrigger><AccordionContent><p>{pet.description}</p></AccordionContent></AccordionItem></Accordion>
-            <ActionLink href="#contact" data-adoption-inquiry data-adoption-pet={pet.species} data-adoption-context={pet.name}>{formatMessage(t.askPet, { name: pet.name })}</ActionLink>
-          </div>
-        </Card></CarouselItem>;
-      })}</CarouselContent>
-      {resultCount > 1 && <div className="pet-carousel-controls"><CarouselPrevious className="static size-11 translate-y-0"><span className="sr-only">{t.previous}</span></CarouselPrevious><p>{t.browseHint}</p><CarouselNext className="static size-11 translate-y-0"><span className="sr-only">{t.next}</span></CarouselNext></div>}
-    </Carousel>}
+    <p className="pet-results" role="status" aria-live="polite">{profiles.length ? formatMessage(t.count, { count: profiles.length }) : filter === "Favorite" ? extra.emptyFavorites : t.empty}</p>
+    {profiles.length > 0 ? <Carousel key={filter} setApi={setApi} opts={{ align: "start", slidesToScroll: 1 }} className="pet-carousel" aria-label={t.carouselLabel}>
+      <CarouselContent className="pet-carousel-track">{profiles.map(pet => <CarouselItem key={pet.name} className="pet-carousel-slide">
+        <AdoptionCard locale={locale} pet={pet} demo={!pets.length} image={pets.length ? pet.photo?.src : showcaseImages[pet.name]}
+          favorite={favorites.includes(pet.name)} recommended={recommended === pet.name}
+          onFavorite={() => setFavorites(previous => previous.includes(pet.name) ? previous.filter(name => name !== pet.name) : [...previous, pet.name])} />
+      </CarouselItem>)}</CarouselContent>
+      <AdoptionCarouselControls locale={locale} total={profiles.length} />
+    </Carousel> : <Card className="pet-empty"><Heart aria-hidden="true" /><p>{filter === "Favorite" ? extra.favoriteHint : t.empty}</p><Button type="button" variant="outline" onClick={() => changeFilter("All")}>{extra.showAll}</Button></Card>}
   </>;
 }

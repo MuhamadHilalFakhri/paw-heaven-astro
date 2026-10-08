@@ -1,0 +1,33 @@
+.companion-quiz { margin: 0 0 24px; padding: 0 20px; background: white; }
+.companion-quiz [data-slot="accordion-trigger"] > span { display: flex; align-items: center; gap: 10px; }
+.companion-quiz svg { width: 20px; flex-shrink: 0; }
+.quiz-panel { max-width: 760px; padding-bottom: 8px; }
+.quiz-hint, .quiz-demo-note { margin: 0 0 16px; }
+.quiz-step { font-weight: 600; margin-bottom: 12px; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.quiz-actions button { min-height: 44px; white-space: normal; height: auto; }
+.quiz-demo-note { font-size: 12px; opacity: .8; }
+.quiz-result { display: flex; align-items: flex-start; gap: 20px; }
+.quiz-result img { object-fit: contain; flex-shrink: 0; }
+.quiz-result h4 { margin-top: 0; }
+.quiz-panel [role="combobox"] { width: 100%; min-height: 44px; }
+.pet-card-status { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pet-favorite { min-width: 44px; min-height: 44px; color: #a73561; }
+.pet-favorite[aria-pressed="true"] svg { fill: currentColor; }
+.pet-profile.is-match { border: 2px solid #096877; }
+.match-badge { margin-bottom: 12px; }
+.adoption-navigation { margin-top: 18px; }
+.adoption-navigation .pet-carousel-controls { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 12px; }
+.adoption-navigation > button { min-height: 44px; min-width: 44px; }
+.carousel-position { text-align: center; margin: 0; font-weight: 600; }
+.carousel-dots { display: flex; justify-content: center; flex-wrap: wrap; }
+.carousel-dots button { width: 44px; height: 44px; padding: 0; }
+.carousel-dots button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #bdd2d5; }
+.carousel-dots button[aria-current="true"]::before { background: #075b68; width: 20px; border-radius: 8px; }
+.adoption-navigation .carousel-hint { grid-column: 1 / -1; text-align: center; margin: 0; }
+@media (max-width: 640px) {
+  .companion-quiz { padding: 0 14px; }
+  .quiz-result { flex-direction: column; gap: 8px; }
+  .pet-filters { flex-wrap: wrap; }
+  .quiz-panel [role="combobox"] { white-space: normal; height: auto; }
+}
