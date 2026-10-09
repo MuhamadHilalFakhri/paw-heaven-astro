@@ -10,6 +10,8 @@
 }
 [data-slot="select-trigger"].choice-trigger[aria-invalid="true"] { border-color: #ad2941; }
 .service-description-short { display: none; }
+.service-card { display: flex; flex-direction: column; }
+.service-card .service-detail-button { margin-top: auto; }
 .page-frame > section + section,
 .page-frame > .paw-footer { border-top: 1px solid #e4eff1; }
 .page-frame > section { scroll-margin-top: 110px; }
