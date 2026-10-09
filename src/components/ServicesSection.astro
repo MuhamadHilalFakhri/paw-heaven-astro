@@ -11,6 +11,7 @@ import type { ImageMetadata } from "astro";
 import { getSiteContent } from "../data/site-content";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import { getServiceSummaries } from "../i18n/service-summaries";
 
 const serviceImages: Record<string, ImageMetadata> = {
   grooming: groomingImage,
@@ -24,6 +25,7 @@ interface Props extends LocaleProps {}
 const { locale } = Astro.props;
 const { page: t } = getMessages(locale);
 const { services } = getSiteContent(locale);
+const summaries = getServiceSummaries(locale);
 
 ---
 
@@ -42,8 +44,9 @@ const { services } = getSiteContent(locale);
         <Card className="service-card">
           <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
           <h3>{item.title}</h3>
-          <p>{item.text}</p>
-          <Button type="button" className="paw-button secondary-action service-detail-button" data-service-details={item.image} data-service-title={item.title} aria-haspopup="dialog">{t.exploreService}</Button>
+          <p class="service-description-full">{item.text}</p>
+          <p class="service-description-short">{summaries[item.image] ?? item.text}</p>
+          <Button type="button" className="paw-button secondary-action service-detail-button" data-service-details={item.image} data-service-title={item.title} aria-haspopup="dialog" aria-label={`${t.exploreService}: ${item.title}`}>{t.exploreService}</Button>
         </Card>
       );
     })}
