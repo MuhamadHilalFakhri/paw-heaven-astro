@@ -1,0 +1,71 @@
+:root { --section-space: clamp(36px, 5vw, 64px); }
+.page-scroll-area { overflow: clip !important; }
+.paw-hero > p,
+.section-heading p,
+.feature-card p,
+.service-card p,
+.testimonial-band p,
+.adoption-section p,
+.vaccine-copy p,
+.plan-description,
+.community-card p,
+.community-callout p,
+.paw-faq-answer,
+.footer-grid p { font-size: 15px; line-height: 1.65; }
+.paw-hero > p { max-width: 580px; padding-inline: 8px; }
+.section-heading p { max-width: 680px; margin-top: 16px; }
+.feature-card p { max-width: 32ch; }
+.section-heading .eyebrow { font-size: 13px; }
+.adoption-section h3, .adoption-section .check-list { font-size: 15px; line-height: 1.6; }
+.paw-faq-trigger { font-size: 15px; line-height: 1.5; }
+.plan-benefits .check-list { font-size: 14px; line-height: 1.55; }
+.plan-benefits h4 { font-size: 14px; line-height: 1.5; min-height: 0; margin-bottom: 12px; }
+.plan-price span { font-size: 12px; }
+.pet-profile-content dl { font-size: 15px; }
+.pet-profile-content [data-slot="accordion-trigger"] { font-size: 14px; }
+.paw-button { font-size: 14px; }
+.paw-button:not(.secondary-action) { background: var(--primary); color: var(--primary-foreground); }
+.paw-button:not(.secondary-action):hover { background: var(--primary-hover); }
+.paw-header .header-book .paw-button { background: var(--primary); font-size: 12px; }
+.paw-header .header-book .paw-button:hover { background: var(--primary-hover); }
+.eyebrow { color: #58639c; }
+.intro-section, .services-section, .adoption-section, .plans-section, .community-section, .faq-section { padding-top: var(--section-space); padding-bottom: var(--section-space); }
+.intro-overview { position: relative; max-width: 760px; margin-inline: auto; padding-inline: 42px; text-align: center; }
+.intro-overview .intro-heading { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.2; }
+.intro-description { max-width: 560px; margin: 16px auto 0; font-size: 16px; line-height: 1.65; }
+.intro-benefits { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 0; margin: 22px 0 0; list-style: none; }
+.intro-benefits [data-slot="badge"] { gap: 8px; padding: 10px 14px; background: white; border: 1px solid var(--border); border-radius: 999px; color: var(--foreground); font-size: 14px; white-space: normal; }
+.intro-decorations { pointer-events: none; }
+.intro-decorations img { position: absolute; width: 36px; height: 36px; object-fit: contain; }
+.intro-decorations img:nth-child(1) { left: 0; top: 36px; }
+.intro-decorations img:nth-child(2) { right: 0; top: 70px; }
+.intro-decorations img:nth-child(3) { right: 16px; bottom: 0; }
+.intro-section .feature-grid { margin-top: 36px; }
+.hero-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
+.hero-actions .hero-action { margin-top: 0; }
+.hero-actions .hero-explore { margin: 0; }
+.adoption-navigation { max-width: 360px; margin: 18px auto 0; }
+.adoption-navigation .carousel-hint { font-size: 13px; }
+.pet-carousel .pet-profile .paw-button { font-size: 13px; }
+.shadcn-dialog { height: auto; max-height: calc(100dvh - 32px); }
+.dialog-scroll { height: auto; }
+.dialog-scroll > [data-slot="scroll-area-viewport"] { max-height: calc(100dvh - 34px); }
+.booking-actions { position: sticky; bottom: 0; z-index: 2; background: var(--page); padding-block: 14px 0; }
+.booking-receipt [data-booking-review]:focus { outline: 2px solid var(--ring); outline-offset: 4px; border-radius: 4px; }
+@media (max-width: 1050px) {
+  .paw-header { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .paw-header .desktop-nav, .paw-header .header-book { display: none; }
+  .paw-header .mobile-toggle { display: inline-flex; min-width: 44px; min-height: 44px; }
+}
+@media (max-width: 640px) {
+  .pet-carousel .pet-carousel-slide { flex-basis: 92%; }
+  .intro-overview { padding-inline: 0; }
+  .intro-decorations { display: flex; gap: 18px; justify-content: center; margin-top: 18px; }
+  .intro-decorations img { position: static; width: 30px; height: 30px; }
+  .intro-description { font-size: 15px; }
+  .intro-benefits [data-slot="badge"] { font-size: 13px; padding: 8px 12px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .paw-button { padding-inline: 16px; }
+  .shadcn-dialog { height: auto; max-height: calc(100dvh - 24px); }
+  .dialog-scroll > [data-slot="scroll-area-viewport"] { max-height: calc(100dvh - 26px); }
+}

@@ -1,0 +1,36 @@
+/* Keep form controls visible on the white page. */
+[data-slot="select-trigger"].choice-trigger {
+  border: 1px solid var(--border);
+  background: var(--page);
+}
+[data-slot="select-trigger"].choice-trigger:hover { border-color: var(--ring); }
+[data-slot="select-trigger"].choice-trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+[data-slot="select-trigger"].choice-trigger[aria-invalid="true"] { border-color: #ad2941; }
+.service-description-short { display: none; }
+.page-frame > section + section,
+.page-frame > .paw-footer { border-top: 1px solid #e4eff1; }
+.page-frame > section { scroll-margin-top: 110px; }
+.companion-quiz {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+.quiz-panel { max-width: none; }
+.companion-quiz [data-slot="accordion-trigger"] { min-height: 56px; font-size: 16px; }
+.quiz-panel .choice-field label { display: block; margin-bottom: 8px; font-weight: 600; }
+.demo-confirmation h3:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+@media (max-width: 640px) {
+  .service-description-full { display: none; }
+  .service-description-short { display: block; }
+  .service-card { padding: 18px; }
+  .service-card img { height: 110px; margin-bottom: 12px; }
+  .service-card .service-description-short { margin-top: 10px; line-height: 1.55; }
+  .service-card .service-detail-button { margin-top: 14px; }
+}

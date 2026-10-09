@@ -1,0 +1,89 @@
+.paw-header {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  max-width: 1180px;
+  min-height: 64px;
+  padding: 10px 24px;
+  gap: 14px;
+  border-radius: 24px;
+}
+
+.paw-header.is-scrolled { border-radius: 24px; }
+.paw-header .paw-brand { gap: 8px; font-size: 15px; }
+.paw-header .paw-brand img { width: 36px; height: 36px; }
+.paw-header .desktop-nav { justify-content: center; gap: 6px; font-size: 13px; font-weight: 500; }
+.paw-header .desktop-nav a,
+.paw-header .desktop-nav a.active { min-height: 44px; padding: 10px 12px; white-space: nowrap; }
+.paw-header .header-book .paw-button {
+  min-height: 44px;
+  padding: 0 22px;
+  background: #087f8c;
+  color: var(--primary-foreground);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: none;
+}
+.paw-header .header-book .paw-button:hover { background: #066773; }
+.paw-header .header-book .paw-button:focus-visible { outline: 3px solid var(--foreground); outline-offset: 3px; }
+.paw-header .language-trigger {
+  width: 84px;
+  min-width: 84px;
+  height: 44px;
+  padding: 8px;
+  gap: 6px;
+  flex-shrink: 0;
+  box-shadow: none;
+  border: 1px solid #85c5ce;
+  background: rgb(255 255 255 / 70%);
+}
+.paw-header .language-trigger:hover,
+.paw-header .language-trigger[data-state="open"] { background: #fff; border-color: var(--ring); }
+.paw-header .language-trigger [data-slot="select-value"] {
+  display: inline-flex;
+  min-width: 20px;
+  overflow: visible;
+  flex-shrink: 0;
+  line-clamp: unset;
+  -webkit-line-clamp: unset;
+}
+.paw-header .language-trigger svg { color: var(--foreground); }
+.paw-header .language-trigger:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; box-shadow: none; }
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .paw-header { gap: 10px; padding: 10px 20px; }
+  .paw-header .paw-brand { font-size: 14px; gap: 8px; }
+  .paw-header .paw-brand img { width: 36px; height: 36px; }
+  .paw-header .desktop-nav { gap: 2px; font-size: 12px; }
+  .paw-header .desktop-nav a,
+  .paw-header .desktop-nav a.active { padding: 10px 8px; }
+  .paw-header .header-book .paw-button { padding: 0 16px; font-size: 11px; }
+  .paw-header .language-trigger { width: 84px; min-width: 84px; padding: 8px; }
+}
+
+@media (min-width: 901px) and (max-width: 1050px) {
+  .paw-header { gap: 8px; padding-inline: 16px; }
+  .paw-header .desktop-nav { gap: 0; font-size: 11px; }
+  .paw-header .desktop-nav a,
+  .paw-header .desktop-nav a.active { padding-inline: 6px; }
+  .paw-header .header-book .paw-button { padding-inline: 12px; }
+  .paw-header .paw-brand { font-size: 13px; gap: 6px; }
+  .paw-header .paw-brand img { width: 36px; height: 36px; }
+}
+
+@media (max-width: 900px) {
+  .paw-header { grid-template-columns: minmax(0, 1fr) auto auto; min-height: 64px; padding: 10px 16px; gap: 10px; }
+  .paw-header .paw-brand { font-size: 15px; }
+  .paw-header .paw-brand img { width: 36px; height: 36px; }
+}
+
+@media (max-width: 480px) {
+  .paw-header { min-height: 64px; padding: 10px 14px; gap: 8px; }
+  .paw-header .paw-brand { font-size: 13px; gap: 6px; }
+  .paw-header .paw-brand img { width: 36px; height: 36px; }
+  .paw-header .language-trigger { width: 84px; min-width: 84px; padding: 8px; }
+}
+
+@media (max-width: 360px) {
+  .paw-header { gap: 6px; padding-inline: 10px; }
+  .paw-header .paw-brand { font-size: 12px; gap: 5px; }
+}
