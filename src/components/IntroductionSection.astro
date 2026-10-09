@@ -10,6 +10,8 @@ import vetImage from "../assets/clear/vet.webp";
 import type { ImageMetadata } from "astro";
 import { getSiteContent } from "../data/site-content";
 import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { getIntroContent } from "../i18n/intro-content";
 
 const featureImages: Record<string, ImageMetadata> = {
   grooming: groomingImage,
@@ -20,21 +22,18 @@ interface Props extends LocaleProps {}
 const { locale } = Astro.props;
 const { page: t } = getMessages(locale);
 const { features } = getSiteContent(locale);
+const intro = getIntroContent(locale);
 
 ---
 
-<section class="intro-section" aria-label={t.aboutLabel}>
-  <h2 class="intro-heading">
-    <span class="intro-line">
-      {t.introBrand} <img class="intro-decoration" src={introVetImage.src} width={introVetImage.width} height={introVetImage.height} alt="" /> {t.introLines[0]}
-    </span>{" "}
-    <span class="intro-line">
-      {t.introLines[1]} <img class="intro-decoration" src={introFishImage.src} width={introFishImage.width} height={introFishImage.height} alt="" />
-    </span>{" "}
-    <span class="intro-line">
-      {t.introLines[2]} <img class="intro-decoration" src={introDogImage.src} width={introDogImage.width} height={introDogImage.height} alt="" />
-    </span>
-  </h2>
+<section id="about" class="intro-section" aria-labelledby="intro-title">
+  <div class="intro-overview">
+    <p class="eyebrow">{t.aboutLabel}</p>
+    <h2 id="intro-title" class="intro-heading">{intro.title}</h2>
+    <p class="intro-description">{intro.description}</p>
+    <ul class="intro-benefits">{intro.benefits.map((benefit, index) => <li><Badge variant="secondary"><span aria-hidden="true">{["🐾", "♡", "⌂"][index]}</span>{benefit}</Badge></li>)}</ul>
+    <div class="intro-decorations" aria-hidden="true">{[introVetImage, introFishImage, introDogImage].map(image => <img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" />)}</div>
+  </div>
   <div class="feature-grid">
     {features.map((item) => {
       const image = featureImages[item.image];
