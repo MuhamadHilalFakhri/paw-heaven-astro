@@ -1,5 +1,6 @@
-import { useEffect, useRef, type RefObject } from "react";
-import { petFrames, type PetSpecies, type PetTravel } from "./pet-frames";
+import { useEffect, useRef, useState, type RefObject } from "react";
+import { petFrames, petWalkFrames, type PetSpecies, type PetTravel } from "./pet-frames";
+import { getPetGait } from "./pet-gait";
 
 type Props = {
   species: PetSpecies;
@@ -9,52 +10,68 @@ type Props = {
   compact: boolean;
 };
 
-const preloaded = new Set<string>();
-const CAT_WALK = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-const DOG_WALK = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11];
+const preloaded = new Map<string, Promise<void>>();
+function preload(src: string) {
+  if (!preloaded.has(src)) {
+    const image = new Image();
+    image.src = src;
+    preloaded.set(src, image.decode());
+  }
+  return preloaded.get(src)!;
+}
 
 export function PetSprite({ species, pose, travel, reduced, compact }: Props) {
   const art = useRef<HTMLSpanElement>(null);
   const image = useRef<HTMLImageElement>(null);
+  const gaitDistance = useRef(travel.current.distance);
   const frames = petFrames[species];
+  const walkingFrames = petWalkFrames[species];
+  const [readySpecies, setReadySpecies] = useState<PetSpecies | null>(null);
   const restingFrame = pose === "play" ? 14 : pose === "treat" ? 15 : 12;
 
   useEffect(() => {
-    frames.forEach(src => {
-      if (preloaded.has(src)) return;
-      preloaded.add(src);
-      const preload = new Image();
-      preload.src = src;
-      void preload.decode().catch(() => preloaded.delete(src));
-    });
-  }, [frames]);
+    let cancelled = false;
+    Promise.all([...walkingFrames, ...frames.slice(12)].map(preload))
+      .then(() => { if (!cancelled) setReadySpecies(species); })
+      .catch(() => { if (!cancelled) setReadySpecies(null); });
+    return () => { cancelled = true; };
+  }, [frames, walkingFrames, species]);
 
   useEffect(() => {
     const node = art.current;
     const img = image.current;
     if (!node || !img) return;
-    const startDistance = travel.current.distance;
-    const stride = (species === "cat" ? 38 : 42) * (compact ? 68 / 88 : 1);
-    const walkFrames = species === "cat" ? CAT_WALK : DOG_WALK;
+    const { stride } = getPetGait(species, compact);
     const startTime = performance.now();
-    let frameId = -1;
+    let previousTime = startTime;
+    let currentSource = "";
     let request = 0;
     const tick = (now: number) => {
-      const phase = ((travel.current.distance - startDistance) / stride) % 1;
-      const blink = ((now - startTime) % 4700) > 4460 && ((now - startTime) % 4700) < 4590;
-      const next = pose === "walk" && !reduced ? walkFrames[Math.floor(phase * walkFrames.length)]
-        : pose === "idle" && blink && !reduced ? 13 : restingFrame;
-      if (next !== frameId && frames[next]) {
-        img.src = frames[next];
-        frameId = next;
+      const elapsed = Math.min(0.1, Math.max(0, (now - previousTime) / 1000));
+      previousTime = now;
+      const distance = travel.current.distance;
+      if (pose !== "walk" || reduced || Math.abs(distance - gaitDistance.current) > stride * 2) {
+        gaitDistance.current = distance;
+      } else {
+        gaitDistance.current += (distance - gaitDistance.current) * (1 - Math.exp(-elapsed / 0.075));
       }
-      const lift = pose === "walk" && !reduced ? -0.65 * (1 - Math.cos(phase * Math.PI * 4)) / 2 : 0;
+      const phase = (gaitDistance.current / stride) % 1;
+      const blink = ((now - startTime) % 4700) > 4460 && ((now - startTime) % 4700) < 4590;
+      const walking = pose === "walk" && !reduced;
+      const source = walking && readySpecies === species
+        ? walkingFrames[Math.floor(phase * walkingFrames.length)]
+        : frames[pose === "idle" && blink && !reduced ? 13 : restingFrame];
+      if (source && source !== currentSource) {
+        img.src = source;
+        currentSource = source;
+      }
+      const lift = walking ? -0.3 * (1 - Math.cos(phase * Math.PI * 4)) / 2 : 0;
       node.style.setProperty("--pet-lift", `${lift.toFixed(3)}px`);
       if (!reduced && (pose === "walk" || pose === "idle")) request = requestAnimationFrame(tick);
     };
     tick(startTime);
     return () => cancelAnimationFrame(request);
-  }, [frames, pose, travel, reduced, species, compact, restingFrame]);
+  }, [frames, walkingFrames, readySpecies, pose, travel, reduced, species, compact, restingFrame]);
 
   return <span ref={art} className="pet-companion__art" data-pose={pose} aria-hidden="true">
     <img ref={image} src={frames[restingFrame]} alt="" width={192} height={192} draggable={false} />

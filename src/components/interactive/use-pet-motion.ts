@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import { gsap } from "gsap";
 import type { PetSpecies, PetTravel } from "./pet-frames";
+import { getPetGait, WALK_RAMP_SECONDS, walkEaseIn, walkEaseOut } from "./pet-gait";
 
 type PetLane = { left: number; right: number };
 type DragStart = { x: number; left: number; moved: boolean };
@@ -51,8 +52,8 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
       const target = goingRight ? right : left;
       const distance = Math.abs(target - proxy.x);
       const direction = Math.sign(target - proxy.x);
-      const pace = (species === "cat" ? 36 : 40) * (compact ? 68 / 88 : 1) * (0.92 + Math.random() * 0.16);
-      const easingDistance = Math.min(pace * 0.65 / 2, distance / 3);
+      const pace = getPetGait(species, compact).pace * (0.96 + Math.random() * 0.08);
+      const easingDistance = Math.min(pace * WALK_RAMP_SECONDS / 2, distance / 3);
       const rampDuration = easingDistance * 2 / pace;
       const cruiseDistance = distance - easingDistance * 2;
       setMoving(true);
@@ -60,12 +61,12 @@ export function usePetMotion(enabled: boolean, compact: boolean, suspended = fal
         onUpdate: () => write(proxy.x),
         onComplete: () => {
           setMoving(false);
-          pause = gsap.delayedCall(1.1 + Math.random() * 1.7, walk);
+          pause = gsap.delayedCall(2 + Math.random() * 2.5, walk);
         },
       });
-      journey.to(proxy, { x: proxy.x + direction * easingDistance, duration: rampDuration, ease: "power1.in" });
+      journey.to(proxy, { x: proxy.x + direction * easingDistance, duration: rampDuration, ease: walkEaseIn });
       journey.to(proxy, { x: target - direction * easingDistance, duration: cruiseDistance / pace, ease: "none" });
-      journey.to(proxy, { x: target, duration: rampDuration, ease: "power1.out" });
+      journey.to(proxy, { x: target, duration: rampDuration, ease: walkEaseOut });
     };
     const resize = () => {
       lane.current = { left: EDGE, right: Math.max(EDGE, window.innerWidth - node.offsetWidth - EDGE) };
