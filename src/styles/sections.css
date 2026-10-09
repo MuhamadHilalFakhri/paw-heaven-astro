@@ -1,6 +1,6 @@
 .intro-section {
   padding: 44px 4% 28px;
-  background: linear-gradient(to bottom, var(--page), var(--trust-tint));
+  background: var(--page);
 }
 
 .intro-section h2 {
@@ -78,7 +78,7 @@
 .testimonial-band {
   position: relative;
   padding: 46px 5% 14px;
-  background: linear-gradient(to bottom, var(--trust-tint), var(--services-tint));
+  background: var(--page);
   text-align: center;
 }
 
@@ -117,7 +117,7 @@
 
 .services-section {
   padding: 48px 4% 40px;
-  background: linear-gradient(to bottom, var(--services-tint), var(--adoption-tint));
+  background: var(--page);
 }
 
 .section-heading {

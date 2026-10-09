@@ -1,10 +1,10 @@
 .community-section {
   padding: 48px 4%;
-  background: linear-gradient(to bottom, var(--community-tint), var(--faq-tint));
+  background: var(--page);
 }
 
 .adoption-browser {
-  background: linear-gradient(to bottom, var(--page), var(--vaccine-tint));
+  background: var(--page);
 }
 .community-grid {
   display: grid;

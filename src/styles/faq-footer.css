@@ -3,7 +3,7 @@
   grid-template-columns: 1.1fr 1fr;
   gap: 38px;
   padding: 38px 4% 36px;
-  background: linear-gradient(to bottom, var(--faq-tint), var(--trust-tint));
+  background: var(--page);
 }
 
 .faq-section h2 {
@@ -75,7 +75,7 @@
 
 .paw-footer {
   padding: 32px 4% 20px;
-  background: var(--trust-tint);
+  background: var(--page);
 }
 
 .footer-illustration {
