@@ -1,5 +1,5 @@
 export const page = {
-  title: "PawCare+ - Loved by Pets, Trusted by Owners",
+  title: "PawCare+",
   description: "Explore grooming, veterinary care, home visits, boarding, and adoption support at PawCare+.",
   book: "Book Appointment", call: "Contact details", bookVisit: "Book a visit",
   language: "Choose language", mainNav: "Main navigation", mobileNav: "Mobile navigation",

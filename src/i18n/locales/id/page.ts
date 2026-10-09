@@ -1,5 +1,5 @@
 export const page = {
-  title: "PawCare+ - Disayang Hewan, Dipercaya Pemiliknya",
+  title: "PawCare+",
   description: "Temukan layanan grooming, kesehatan hewan, kunjungan rumah, penitipan, dan pendampingan adopsi di PawCare+.",
   book: "Buat Janji", call: "Lihat Kontak", bookVisit: "Simulasi Kunjungan",
   language: "Pilih bahasa", mainNav: "Navigasi utama", mobileNav: "Navigasi mobile",
