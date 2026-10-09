@@ -1,7 +1,7 @@
 export const adoption = {
   filters: { All: "All companions", Cat: "Cats", Dog: "Dogs" }, filterLabel: "Filter adoption profiles",
   status: { Available: "Available", Reserved: "Reserved", Adopted: "Adopted" },
-  count: "Showing {count} demo profiles. Availability is simulated.",
+  count: "{count} companions to explore",
   cat: { alt: "Illustration of three friendly cats, shown as sample artwork" },
   dog: { alt: "Illustration of three cheerful dogs, shown as sample artwork" },
   demoProfiles: [

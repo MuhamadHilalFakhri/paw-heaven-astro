@@ -1,7 +1,7 @@
 export const adoption = {
   filters: { All: "Semua sahabat", Cat: "Kucing", Dog: "Anjing" }, filterLabel: "Filter profil adopsi",
   status: { Available: "Tersedia", Reserved: "Dipesan", Adopted: "Sudah diadopsi" },
-  count: "Menampilkan {count} profil demo. Ketersediaannya hanya simulasi.",
+  count: "{count} sahabat untuk dikenali",
   cat: { alt: "Ilustrasi tiga kucing bersahabat sebagai contoh artwork" },
   dog: { alt: "Ilustrasi tiga anjing ceria sebagai contoh artwork" },
   demoProfiles: [

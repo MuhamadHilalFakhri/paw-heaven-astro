@@ -5,7 +5,7 @@
 .quiz-hint, .quiz-demo-note { margin: 0 0 16px; }
 .quiz-step { font-weight: 600; margin-bottom: 12px; }
 .quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
-.quiz-actions button { min-height: 44px; white-space: normal; height: auto; }
+.quiz-actions button { min-height: 44px; padding: 10px 22px; border-radius: 999px; white-space: normal; height: auto; font-weight: 600; }
 .quiz-demo-note { font-size: 12px; opacity: .8; }
 .quiz-result { display: flex; align-items: flex-start; gap: 20px; }
 .quiz-result img { object-fit: contain; flex-shrink: 0; }
