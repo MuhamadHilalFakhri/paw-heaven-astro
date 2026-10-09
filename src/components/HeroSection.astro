@@ -4,6 +4,7 @@ import { getMessages } from "../i18n/messages";
 import heroImage from "../assets/clear/hero-vet.webp";
 import teddyImage from "../assets/clear/teddy.webp";
 import ActionLink from "./interactive/ActionLink";
+import { getIntroContent } from "../i18n/intro-content";
 interface Props extends LocaleProps {}
 const { locale } = Astro.props;
 const { page: t } = getMessages(locale);
@@ -17,7 +18,7 @@ const { page: t } = getMessages(locale);
   <span class="hero-mark mark-four" aria-hidden="true">✦</span>
   <h1 id="hero-title">{t.heroTitle[0]}<br />{t.heroTitle[1]}</h1>
   <p>{t.heroText}</p>
-  <div class="hero-action">
+  <div class="hero-actions"><div class="hero-action">
     <img
       class="teddy-decoration"
       src={teddyImage.src}
@@ -26,7 +27,7 @@ const { page: t } = getMessages(locale);
       alt=""
     />
     <ActionLink href="#contact" data-booking>{t.book}</ActionLink>
-  </div>
+  </div><ActionLink className="paw-button secondary-action hero-explore" href="#services">{getIntroContent(locale).explore}</ActionLink></div>
   <img
     class="hero-illustration"
     src={heroImage.src}
