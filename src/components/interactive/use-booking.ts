@@ -31,7 +31,7 @@ export function useBooking(preset: BookingPreset, locale: Locale) {
     if (!panel) return;
     const animation = gsap.fromTo(panel, { opacity: 0, x: 8 }, { opacity: 1, x: 0, duration: motionDuration(0.2), clearProps: "opacity,transform" });
     formRef.current?.closest("[data-slot='scroll-area-viewport']")?.scrollTo({ top: 0 });
-    panel.querySelector<HTMLElement>("[role='combobox'], input, #booking-date, pre")?.focus({ preventScroll: true });
+    panel.querySelector<HTMLElement>("[role='combobox'], input, #booking-date, [data-booking-review]")?.focus({ preventScroll: true });
     return () => { animation.revert(); };
   }, [step]);
   return { values, errors, setField, step, setStep, validate, formRef };

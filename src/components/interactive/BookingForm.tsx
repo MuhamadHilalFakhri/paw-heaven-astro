@@ -1,6 +1,6 @@
 import type { LocaleProps } from "../../i18n/config";
 import { getMessages } from "../../i18n/messages";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { DialogClose } from "../ui/dialog";
@@ -13,7 +13,12 @@ export default function BookingForm({ preset, locale }: LocaleProps & { preset: 
   const { booking: t, interactive: ui } = getMessages(locale);
   const { values, errors, setField, step, setStep, validate, formRef } = useBooking(preset, locale);
   const [complete, setComplete] = useState(false);
-
+  const confirmationTitle = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (!complete) return;
+    formRef.current?.closest("[data-slot='scroll-area-viewport']")?.scrollTo({ top: 0, behavior: "instant" });
+    confirmationTitle.current?.focus({ preventScroll: true });
+  }, [complete, formRef]);
 
   return <>
     {!complete && <ol className="booking-progress" aria-label={t.stepsLabel}>
@@ -22,7 +27,7 @@ export default function BookingForm({ preset, locale }: LocaleProps & { preset: 
     <form id="booking-form" ref={formRef} noValidate onSubmit={event => { event.preventDefault(); if (step < 3 && validate()) setStep(step + 1); }}>
       {complete ? <section className="demo-confirmation" aria-labelledby="booking-demo-title">
         <Badge className="demo-badge">{ui.demoLabel}</Badge>
-        <h3 id="booking-demo-title">{t.successTitle}</h3>
+        <h3 id="booking-demo-title" ref={confirmationTitle} tabIndex={-1}>{t.successTitle}</h3>
         <p role="status" aria-live="polite">{t.successMessage}</p>
         <BookingReceipt values={values} preset={preset} locale={locale} />
         <DialogClose asChild><Button type="button" className="paw-button">{ui.done}</Button></DialogClose>
