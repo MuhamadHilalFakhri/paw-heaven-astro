@@ -25,8 +25,8 @@ const { locale } = Astro.props;
 <BaseLayout locale={locale}>
   <PageScrollArea client:load>
   <main id="top" class="site-shell">
+    <header class="paw-header"><HeaderNav locale={locale} client:load /></header>
     <div class="page-frame">
-      <header class="paw-header"><HeaderNav locale={locale} client:load /></header>
       <aside class="prototype-notice" role="note">{getMessages(locale).page.prototypeNotice}</aside>
       <div class="hero-wash">
         <HeroSection locale={locale} />

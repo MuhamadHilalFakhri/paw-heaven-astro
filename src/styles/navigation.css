@@ -8,28 +8,9 @@ html {
 }
 
 .paw-header.is-scrolled {
-  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
-  isolation: isolate;
-  background: transparent;
-  box-shadow: none;
-}
-
-.paw-header.is-scrolled::before,
-.paw-header.is-scrolled::after {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-}
-
-.paw-header.is-scrolled::before {
-  background: var(--background);
-}
-
-.paw-header.is-scrolled::after {
-  border-radius: inherit;
+  border-radius: var(--radius-panel);
   background: var(--hero-tint);
+  box-shadow: 0 6px 20px rgb(7 59 72 / 12%);
 }
 
 .desktop-nav a {
@@ -80,6 +61,7 @@ html {
 }
 
 @media (max-width: 900px) {
+  .paw-header { top: 12px; margin-bottom: 16px; }
   html {
     scroll-padding-top: 92px;
   }

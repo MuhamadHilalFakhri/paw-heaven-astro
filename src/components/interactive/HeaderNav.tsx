@@ -40,7 +40,7 @@ export default function HeaderNav({ locale }: LocaleProps) {
       header.classList.toggle("is-scrolled", viewport.scrollTop > 80);
     };
     const onScroll = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); };
-    const wide = window.matchMedia("(min-width: 901px)");
+    const wide = window.matchMedia("(min-width: 1051px)");
     const onWide = () => { if (wide.matches) setOpen(false); };
     const onHistory = () => scrollToSection(window.location.hash || "#top", false);
     viewport.addEventListener("scroll", onScroll, { passive: true });

@@ -1,7 +1,8 @@
 export const navigationLinks = [
   { label: "Beranda", href: "#top" },
+  { label: "Tentang", href: "#about" },
   { label: "Layanan", href: "#services" },
-  { label: "Tentang Kami", href: "#about" },
+  { label: "Adopsi", href: "#adoption" },
   { label: "Paket", href: "#plans" },
   { label: "FAQ", href: "#faq" },
 ];

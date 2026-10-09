@@ -31,14 +31,17 @@ h2 {
 
 .paw-header {
   position: sticky;
-  top: 0;
+  top: 16px;
   z-index: 40;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 22px;
   min-height: 86px;
+  max-width: 1180px;
+  margin: 0 auto 24px;
   padding: 20px 6%;
+  border-radius: var(--radius-panel);
   background: var(--hero-tint);
 }
 

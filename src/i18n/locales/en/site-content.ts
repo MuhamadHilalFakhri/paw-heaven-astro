@@ -1,8 +1,9 @@
 export const navigationLinks = [
   { label: "Home", href: "#top" },
+  { label: "About", href: "#about" },
   { label: "Our Services", href: "#services" },
-  { label: "About Us", href: "#about" },
-  { label: "Products", href: "#plans" },
+  { label: "Adoption", href: "#adoption" },
+  { label: "Care Plans", href: "#plans" },
   { label: "FAQ", href: "#faq" },
 ];
 
